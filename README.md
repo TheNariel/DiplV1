@@ -22,3 +22,6 @@ More templates are published in this [Template Library](http://cnn-technology.it
 ![Alt text](/documentation/pic/CnnDia4.PNG?raw=true "output function")
 
 ![Alt text](/documentation/pic/CnnDia5.PNG?raw=true "output graph")
+
+
+![Alt text](/documentation/pic/CnnPic2.PNG?raw=true "App example")
