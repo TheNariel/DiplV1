@@ -12,6 +12,7 @@ As shown in the above diagram, imagine a control system with a feedback loop. f(
 ![Alt text](/documentation/pic/CnnPic1.PNG?raw=true "A/B controls")
 
 More templates are published in this [Template Library](http://cnn-technology.itk.ppke.hu/Template_library_v4.0alpha1.pdf).
+
 **Note**: Not mine (https://github.com/ankitaggarwal011/PyCNN)
 
 ![Alt text](/documentation/pic/CnnDia2.PNG?raw=true "neighbours")
