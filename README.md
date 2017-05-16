@@ -8,7 +8,9 @@ This project is the implementation of CNN for the application of Image Processin
 
 
 As shown in the above diagram, imagine a control system with a feedback loop. f(x) is the piece-wise linear sigmoid function. The control (template B) and the feedback (template A) templates (coefficients) are configurable and controls the output of the system. Significant research had been done in determining the templates for common image processing techniques
+
 ![Alt text](/documentation/pic/CnnPic1.PNG?raw=true "A/B controls")
+
 More templates are published in this [Template Library](http://cnn-technology.itk.ppke.hu/Template_library_v4.0alpha1.pdf).
 **Note**: Not mine (https://github.com/ankitaggarwal011/PyCNN)
 
