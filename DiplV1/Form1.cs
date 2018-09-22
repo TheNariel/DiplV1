@@ -18,16 +18,17 @@ namespace DiplV1
     {
         Bitmap sourceImage = null;
         Bitmap resultImage = null;
-        double z;
+        String activeFileName;
+        double Z;
         double[,] B = new double[3, 3], A = new double[3, 3];
-        double[,] I, O;
-        int widht = 20, height = 20;
+        double[,] O;
+        int widht = 0, height = 0;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openItem_Click(object sender, EventArgs e)
         {
             string path;
             OpenFileDialog file = new OpenFileDialog();
@@ -35,160 +36,100 @@ namespace DiplV1
             {
                 path = file.FileName;
                 sourceImage = (Bitmap)Image.FromFile(path, true);
-                resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+                widht = sourceImage.Width;
+                height = sourceImage.Height;
+                resultImage = new Bitmap(widht, height);
+                activeFileName= "..."+file.FileName.Substring(file.FileName.LastIndexOf("\\"));
+                fileName.Text = activeFileName;
+                createNewPicForm(sourceImage, "Source Image: "+ activeFileName);
 
-                ResizeNearestNeighbor resize = new ResizeNearestNeighbor(500, 500);
-                SISThreshold treshold = new SISThreshold();
-                Grayscale grayscale = new Grayscale(0.2125, 0.7154, 0.0721);
-
-
-                sourceImage = grayscale.Apply(sourceImage);
-                treshold.ApplyInPlace(sourceImage);
-
-                Bitmap resizedImage = resize.Apply(sourceImage);
-                sourcePictureBox.Image = resizedImage;
+                Start.Enabled = true;
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Start_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
             fillParametrs();
             Network Net = new Network(widht, height);
-            Net.Z = z;
+
+            Net.Z = Z;
             Net.B = B;
             Net.A = A;
-            Net.I = I;
-            Net.O = O;
+            Net.I = sourceImage;
+            Net.Output = O;
 
-            for (int i = 0; i < 1; i++)
-            {
-                O = Net.ProcessNetwork();
-                Net.NetworkStates = Net.NewNetworkStates;
-                drawIO();
-            }
+            O = Net.ProcessNetwork();
 
+
+            drawIO();
         }
 
-        private void Z_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void fillParametrs()
         {
-            z = Double.Parse(Z.Text);
+            Z = Double.Parse(Z19.Text);
 
-            B[0, 0] = Double.Parse(B11.Text);
-            B[0, 1] = Double.Parse(B12.Text);
-            B[0, 2] = Double.Parse(B13.Text);
-            B[1, 0] = Double.Parse(B21.Text);
-            B[1, 1] = Double.Parse(B22.Text);
-            B[1, 2] = Double.Parse(B23.Text);
-            B[2, 0] = Double.Parse(B31.Text);
-            B[2, 1] = Double.Parse(B32.Text);
-            B[2, 2] = Double.Parse(B33.Text);
+            B[0, 0] = Double.Parse(B10.Text);
+            B[0, 1] = Double.Parse(B11.Text);
+            B[0, 2] = Double.Parse(B12.Text);
+            B[1, 0] = Double.Parse(B13.Text);
+            B[1, 1] = Double.Parse(B14.Text);
+            B[1, 2] = Double.Parse(B15.Text);
+            B[2, 0] = Double.Parse(B16.Text);
+            B[2, 1] = Double.Parse(B17.Text);
+            B[2, 2] = Double.Parse(B18.Text);
 
-            A[0, 0] = Double.Parse(A11.Text);
-            A[0, 1] = Double.Parse(A12.Text);
-            A[0, 2] = Double.Parse(A13.Text);
-            A[1, 0] = Double.Parse(A21.Text);
-            A[1, 1] = Double.Parse(A22.Text);
-            A[1, 2] = Double.Parse(A23.Text);
-            A[2, 0] = Double.Parse(A31.Text);
-            A[2, 1] = Double.Parse(A32.Text);
-            A[2, 2] = Double.Parse(A33.Text);
+            A[0, 0] = Double.Parse(A01.Text);
+            A[0, 1] = Double.Parse(A02.Text);
+            A[0, 2] = Double.Parse(A03.Text);
+            A[1, 0] = Double.Parse(A04.Text);
+            A[1, 1] = Double.Parse(A05.Text);
+            A[1, 2] = Double.Parse(A06.Text);
+            A[2, 0] = Double.Parse(A07.Text);
+            A[2, 1] = Double.Parse(A08.Text);
+            A[2, 2] = Double.Parse(A09.Text);
 
-            setIO();
-        }
-
-        private void setIO()
-        {
-            //I = new double[height, widht];asdadsadasd
             O = new double[height, widht];
 
             for (int x = 0; x < widht; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    O[y, x] = -1;
+                    O[y, x] = 0;
                 }
             }
-            I = new double[,] {
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0},
-            {0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0},
-            {0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0},
-            {0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0},
-            {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0},
-            {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0},
-            {0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0},
-            {0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0},
-            {0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0},
-            {0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0},
-            {0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0},
-            {0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0},
-            {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
-            //for (int x = 0; x < widht; x++)
-            //{
-            //    for (int y = 0; y < height; y++)
-            //    {
-            //        if (x < 2 || x > 7)
-            //        {
-            //                I[y, x] = 0;
-
-            //        }
-            //        else
-            //        {
-            //            if (y < 2 || y > 7)
-            //            {
-            //                I[y, x] = 0;
-            //            }
-            //            else
-            //            {
-            //                I[y, x] = 1;
-            //            }
-            //        }
-
-
-            //    }
-            //}
         }
+
         private void drawIO()
         {
-            Bitmap BitI = new Bitmap(widht, height);
             Bitmap BitO = new Bitmap(widht, height);
-            int IC = 0, OC = 0;
+            int OC = 0;
             for (int x = 0; x < widht; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    OC = 0;
-                    if (O[y, x] >= 0)
+                    OC = 255;
+                    if (O[y, x] > 0)
                     {
-                        OC = 255;
+                        OC = 0;
                     }
-                    IC = Math.Abs((int)(I[y, x] * 255));
+
+                    //OC = (int)O[y, x];
                     BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
-                    BitI.SetPixel(x, y, Color.FromArgb(IC, IC, IC));
                 }
             }
 
-            ResizeNearestNeighbor resize = new ResizeNearestNeighbor(500, 500);
-            Bitmap resizedImage = resize.Apply(BitO);
-            resultPictureBox.Image = resizedImage;
-            resizedImage = resize.Apply(BitI);
-            sourcePictureBox.Image = resizedImage;
+
+            createNewPicForm(BitO, "Result for: " + activeFileName);
+
         }
+        private void createNewPicForm(Bitmap image, String name)
+        {
+            PicForm picForm = new PicForm(image);
+            picForm.Text = name;
+            picForm.Show();
+        }
+
     }
+
+
 }

@@ -6,9 +6,10 @@ namespace DiplV1
 {
     class Network
     {
-        double[,] networkStates;
         double z;
-        double[,] b, a, i, o, newNetworkStates;
+        double[,] netStatus;        
+        double[,] b, a, output;
+        Bitmap input;
         int widht, height;
 
         public double Z
@@ -47,53 +48,41 @@ namespace DiplV1
                 a = value;
             }
         }
-        public double[,] O
+        public double[,] Output
         {
             get
             {
-                return o;
+                return output;
             }
 
             set
             {
-                o = value;
+                output = value;
             }
         }
-        public double[,] I
+        public Bitmap I
         {
             get
             {
-                return i;
+                return input;
             }
 
             set
             {
-                i = value;
+                input = value;
             }
         }
-
-        public double[,] NewNetworkStates
+        
+        public double[,] NetStatus
         {
             get
             {
-                return  newNetworkStates;
+                return netStatus;
             }
 
             set
             {
-                 newNetworkStates = value;
-            }
-        }
-        public double[,] NetworkStates
-        {
-            get
-            {
-                return networkStates;
-            }
-
-            set
-            {
-                networkStates = value;
+                netStatus = value;
             }
         }
 
@@ -101,7 +90,7 @@ namespace DiplV1
         {
             this.widht = widht;
             this.height = height;
-            networkStates = new double[height, widht];
+            netStatus = new double[height, widht];
             inicializeNetwork();
         }
 
@@ -111,10 +100,9 @@ namespace DiplV1
             {
                 for (int y = 0; y < height; y++)
                 {
-                    networkStates[y, x] = 0;
+                    netStatus[y, x] = 0;
                 }
             }
-            newNetworkStates = (double[,])networkStates.Clone();
         }
 
         public double[,] ProcessNetwork()
@@ -123,13 +111,12 @@ namespace DiplV1
             {
                 for (int y = 1; y < height - 1; y++)
                 {
-                    newNetworkStates[y, x] = newState(x, y);
-                    O[y, x] = coutOutput(newNetworkStates[y, x]);
-                    Debug.Write(O[y, x] + "|");
+                    Output[y, x] = coutOutput(newState(x, y));
+                    Debug.Write(Output[y, x] + "|");
                 }
                 Debug.WriteLine(" ");
             }
-            return O;
+            return Output;
         }
 
         private double newState(int x, int y)
@@ -141,7 +128,8 @@ namespace DiplV1
             {
                 for (int e = -1; e <= 1; e++)
                 {
-                    feedforward += B[i + 1, e + 1] * I[y + i, x + e];
+                    Color test = I.GetPixel(x + e, y + i);
+                    feedforward += B[i + 1, e + 1]  * test.B;
                   
                 }
                
@@ -150,12 +138,12 @@ namespace DiplV1
             {
                 for (int e = -1; e <= 1; e++)
                 {
-                    feedback += A[e + 1, i + 1] * coutOutput(networkStates[y + e, x + i]);
+                    feedback += A[e + 1, i + 1] * coutOutput(netStatus[y + e, x + i]);
                 }
             }
 
             //ret = 0 + z + 0 + feedforward;
-            ret = -networkStates[y, x] + z + feedback + feedforward;
+            ret = -netStatus[y, x] + z + feedback + feedforward;
 
             return ret;
         }
