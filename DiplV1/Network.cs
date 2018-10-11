@@ -7,7 +7,7 @@ namespace DiplV1
     class Network
     {
         double z;
-        double[,] netStatus;        
+        double[,] netStatus;
         double[,] b, a, output;
         Bitmap input;
         int widht, height;
@@ -72,7 +72,7 @@ namespace DiplV1
                 input = value;
             }
         }
-        
+
         public double[,] NetStatus
         {
             get
@@ -86,21 +86,34 @@ namespace DiplV1
             }
         }
 
+
         public Network(int widht, int height)
         {
             this.widht = widht;
             this.height = height;
             netStatus = new double[height, widht];
-            inicializeNetwork();
         }
 
-        private void inicializeNetwork()
+        public void inicializeNetwork(Boolean inputAsOutput)
         {
-            for (int x = 0; x < widht; x++)
+            if (inputAsOutput)
             {
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < widht; x++)
                 {
-                    netStatus[y, x] = 0;
+                    for (int y = 0; y < height; y++)
+                    {
+                        netStatus[y, x] = I.GetPixel(x,y).B;
+                    }
+                }
+            }
+            else
+            {
+                for (int x = 0; x < widht; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        netStatus[y, x] = 0;
+                    }
                 }
             }
         }
@@ -129,16 +142,16 @@ namespace DiplV1
                 for (int e = -1; e <= 1; e++)
                 {
                     Color test = I.GetPixel(x + e, y + i);
-                    feedforward += B[i + 1, e + 1]  * test.B;
-                  
+                    feedforward += B[i + 1, e + 1] * test.B;
+
                 }
-               
+
             }
             for (int i = -1; i <= 1; i++)
             {
                 for (int e = -1; e <= 1; e++)
                 {
-                    feedback += A[e + 1, i + 1] * coutOutput(netStatus[y + e, x + i]);
+                    feedback += A[e + 1, i + 1] * netStatus[y + e, x + i];
                 }
             }
 
@@ -153,7 +166,7 @@ namespace DiplV1
             double ret = 0;
 
             ret = (Math.Abs(state + 1.0) - Math.Abs(state - 1.0)) / 2.0;
-           
+
             return ret;
         }
     }
