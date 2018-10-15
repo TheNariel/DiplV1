@@ -1,7 +1,6 @@
-%% Nacteni sablony
-\input vskpou.cls
-%% Mozne volby sablony vskpou jsou (volaji se napr. \final, \oneside):
-%%       final        -- u overfull boxu se nezobrazi obdelnicky, vhodne ve finalni verzi prace
+\documentclass{vskpou} % Nacteni tridy
+%% Mozne volby tridy vskpou (napr. \documentclass[draft]{vskpou}:
+%%       draft        -- zobrazi se u overfull boxu obdelnicky, ve finalni verzi vypnete
 %%       oneside      -- pouzijte v pripade, ze budete tisknout jednostranne,
 %%                       (coz doporucujeme v pripade, ze prace nepresahne 50 stran,
 %%                       nebot mene nez 25 listu Vam v kniharstvi nesvazou).
@@ -9,40 +8,51 @@
 %%       sectionright -- nova sekce bude zacinat na liche (prave) strane
 %%       old          -- pokud chceme stare poradi pocatecnich stran
 
-%% Vstupni kodovani souboru je UTF8.
-%% Kodovani fontu je XL2 (rozsirene IL2).
-%% Pokud nektere z kodovani chcete zmenit, prectete si TPP, dodatky E,F.
+%% Nastaveni vstupniho kodovani; pracujete-li na pocitaci s OS Windows,
+%% pak je mozne, ze vase kodovani bude cp1250 
+%\usepackage[cp1250]{inputenc}
+\usepackage[utf8]{inputenc}
 
-%% Nastaveni prvniho a druheho jazyka prace -- v techto jazycich budou vysazeny uvodni strany.
-%% První jazyk by měla být čeština nebo slovenština (kvůli česky vysázené titulní straně).
-\jazyky\cslang\uslang
-%% Možné jazyky jsou \cslang, \sklang a \enlang. Přidání dalších jazyků popisuje TPP, dodatek G.
+%% Nastavení kodovani fontu
+\usepackage[IL2]{fontenc}        
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multicol,caption}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+%% Nastaveni prvniho a druheho jazyka prace -- v techto jazycich budou vysazeny
+%% uvodni strany. Prvni jazyk by mel byt czech nebo slovak.
+\jazyky{english}{czech}
+%% Balicek babel se nacte automaticky s temito dvema volbami.
+%% Pokud potrebujete nacist jeste dalsi jazyky, uvedte je do volitelneho argumentu,
+%% napriklad \jazyky[slovak,magyar]{czech}{english}
 
 %% Nastaveni hlavniho jazyka prace -- timto jazykem bude vysazen obsah a hlavni text prace
-\hlavnijazyk\cslang
+\hlavnijazyk{english}
+
 
 %% Informace o praci
-\autor{jméno autora}
+\autor{Tomáš Voznička}
 \vedouci{jméno vedoucího}
-\rok{2017}
+\rok{2018}
 %% Nasledujici makra maji dva argumenty -- prvni odpovida verzi polozky v hlavnim jazyce,
-%% druhy argument odpovida verzi ve druhemu jazyce
+%% druhy argument odpovida druhemu jazyku
 \fakulta{Název fakulty}{Faculty Name}
 \katedra{Název katedry}{Department Name}
 \nazev{Nadpis práce}{Thesis Title}
-\typprace{Typ práce}{Thesis Type}
+\typprace{Typ práce}{Thesis type}
 
 %% Prace musi obsahovat autorske prohlaseni autora
 %% Text prohlaseni zavisi na pohlavi autora. M-muz, Z-zena.
 \pohlavi M
 % \pohlavi Z
 %% Datovani prohlaseni
-\prohlaseni{V Ostravě dne 2.\,4.\,2017}
+\prohlaseni{V Ostravě dne 2.\,4.\,2018}
 %% Pokud chcete napsat jiny text prohlaseni, misto predchoziho radku napiste
 %% \prohlaseni[jiny text]{V Ostravě dne ...}
 
 %% Pokud chcete v praci uvest podekovani, pouzijte makro \podekovani
-\podekovani{Autor děkuje ...}
+%\podekovani{\selectlanguage{czech}Autor děkuje ...}
 %% Pokud nechcete uvest podekovani, makro \podekovani nepouzivejte.
 
 %% Zde zadejte abstrakt a klicova slova
@@ -76,76 +86,53 @@
 %\zadani width 17cm {obrazek.jpg}
 %% Pokud potrebujete misto zadani vlozit prazdnou stranu (napriklad kvuli spravne parite stranek pri oboustrannem tisku), pouzijte
 %%\zadani{}
+\setcounter{tocdepth}{2}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
 
-%% Pro vysazeni pocatecnich stran pouzijte makro \pocatecnistrany
-\pocatecnistrany
-
+\begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sec Název první kapitoly
-
-Zde napíši text první kapitoly. O obsah se nestarám, vytvoří se automaticky.
-
-\secc Sekce
-
-Je přehlednější uložit každou kapitolu práce do zvláštního souboru a tyto soubory načítat příkazem {\tt\char`\\input}.
-%% napriklad:
-%\input kapitola1.tex
-
-\secc Další sekce
-
-Zde na ukázku text, který je
-{\globaldefs-1 \newcount\ii \loop\ifnum\ii<800 \advance\ii1 hodně \repeat}%
-dlouhý.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sec Druhá kapitola
-
-Každá kapitola automaticky začíná na nové straně. Pokud chcete jiné nastavení, uveďte v~záhlaví volbu samepage případně sectionright.
-%\input kapitola2.tex
-
-\secc Sekce
-
-A zde se odkazuji na \cite[Knuth].
+\section{Název první kapitoly}
+\input Ch1.tex
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sec Třetí kapitola
+\section{Druhá kapitola}
+\input Ch2.tex
 
-Zde je text třetí kapitoly
-%\input kapitola3.tex
 
-\secc Podkapitola
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Třetí kapitola}
+\input Ch3.tex
+
 
 %% Pro vysazeni stran resume pouzijte makro \stranyresume
 \stranyresume
 
-\nonum\sec Seznam literatury
-
-{ %% Seznam literatury je lepší sázet na praporek.
-\raggedright
+\begin{thebibliography}{9}
 
 %% priklad casti monografie
-\bib[Hruby-Kubat] Hrubý,~D., Kubát,~J. {\it Matematika pro gymnázia: Diferenciální a integrální počet.} 1.\,vydání. Praha: Prometheus, 1997. \ISBN{80-7196-063-2}. Kapitola~6, Určitý integrál, s.\,150--178.
+\bibitem{Hruby-Kubat} Hrubý,~D., Kubát,~J. \textit{Matematika pro gymnázia: Diferenciální a integrální počet.} 1.\,vydání. Praha: Prometheus, 1997. \ISBN{80-7196-063-2}. Kapitola~6, Určitý integrál, s.\,150--178.
 
 %% priklad monograficke publikace:
-\bib[Knuth] Knuth,~D.~E. {\it The \TeX book.} Reading, Massachusetts: Addison-Wesley, 1984. \ISBN{0-201-13447-0}.
+\bibitem{Knuth} Knuth,~D.~E. \textit{The \TeX book.} Reading, Massachusetts: Addison-Wesley, 1984. \ISBN{0-201-13447-0}.
 
 %% elektronicky serial
-\bib[fancy] Moravec, David. Balíček {\tt fancyhdr.sty}. {\it Zpravodaj Československého sdružení uživatelů \TeX u} [online]. 2001, roč.\,11, č.\,4, s.\,186--195. \ISSN{1211-6661}. Dostupné z~\url{http://bulletin.cstug.cz/pdf/}.
+\bibitem{fancy} Moravec, David. Balíček \texttt{fancyhdr.sty}. \textit{Zpravodaj Československého sdružení uživatelů \TeX u} [online]. 2001, roč.\,11, č.\,4, s.\,186--195. \ISSN{1211-6661}. Dostupné z~\url{http://bulletin.cstug.cz/pdf/}.
 
 %% priklad online clanku v anglictine
-\bib[Mandelbrot] Wikipedia contributors. {\it Mandelbrot Set} [online]. Wikipedia: The Free Encyclopedia, c2009, datum poslední revize 22.\,10.\,2009 [citováno 22.\,10.\,2009].
+\bibitem{Mandelbrot} Wikipedia contributors. \textit{Mandelbrot Set} [online]. Wikipedia: The Free Encyclopedia, c2009, datum poslední revize 22.\,10.\,2009 [citováno 22.\,10.\,2009].
 \url{http://en.wikipedia.org/wiki/Mandelbrot_set}.
 
 %% priklad online clanku
-\bib[TeX] Přispěvatelé wikipedie. {\it\TeX} [online]. Wikipedie: Otevřená encyklopedie, c2009, datum poslední revize 7.\,10.\,2009 [citováno 22.\,10.\,2009].
+\bibitem{TeX} Přispěvatelé wikipedie. \textit{\TeX} [online]. Wikipedie: Otevřená encyklopedie, c2009, datum poslední revize 7.\,10.\,2009 [citováno 22.\,10.\,2009].
 \url{http://cs.wikipedia.org/wiki/TeX}.
 
-}
+\end{thebibliography}
 
-\bye
+\end{document}
 
 %% Pripadne dotazy k pouziti tridy vskpou.cls smerujte na:
 %% jan tecka sustek zavinac osu tecka cz

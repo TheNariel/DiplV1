@@ -1,7 +1,0 @@
-Autor: doc. RNDr. Jan Šustek, Ph.D.
-
-Licence:
-Šablona je opatøena licencí GPL. Tato licence má následující tøi zásady:
-1) K software pod licencí GPL musí být k dispozici zdrojové kódy.
-2) Kdokoli mùže GPL software (èi jen jeho èásti) použít k èemukoli, ale pokud by ho chtìl dále šíøit (tzn. prodávat èi umístit zdarma na web), musí jej znovu dát pod licencí GPL (a s uvedenými pùvodními autory).
-3) Tvùrce softwaru neruèí za škody zpùsobené použitím GPL softwaru.
