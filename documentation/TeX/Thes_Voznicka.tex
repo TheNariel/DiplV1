@@ -15,10 +15,13 @@
 
 %% Nastavení kodovani fontu
 \usepackage[IL2]{fontenc}        
-\usepackage{amsmath}
+\usepackage[fleqn]{amsmath}
+\setlength{\mathindent}{0pt}
 \usepackage{graphicx}
 \usepackage{multicol,caption}
 \usepackage{wrapfig}
+\usepackage{verbatim}
+\usepackage{subcaption}
 \usepackage{lipsum}
 %% Nastaveni prvniho a druheho jazyka prace -- v techto jazycich budou vysazeny
 %% uvodni strany. Prvni jazyk by mel byt czech nebo slovak.
@@ -87,9 +90,6 @@
 %% Pokud potrebujete misto zadani vlozit prazdnou stranu (napriklad kvuli spravne parite stranek pri oboustrannem tisku), pouzijte
 %%\zadani{}
 \setcounter{tocdepth}{2}
-\newenvironment{Figure}
-  {\par\medskip\noindent\minipage{\linewidth}}
-  {\endminipage\par\medskip}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,6 +113,17 @@
 
 \begin{thebibliography}{9}
 
+\bibitem{Dolan-DeSouza}
+\textit{Ryanne Dolan and Guilherme DeSouza} GPU-Based Simulation of Cellular Neural Networks
+for Image Processing, 2009, International Joint Conference on Neural Networks, 2009.
+
+
+
+\begin{comment}
+Examples
+
+
+ 
 %% priklad casti monografie
 \bibitem{Hruby-Kubat} Hrubý,~D., Kubát,~J. \textit{Matematika pro gymnázia: Diferenciální a integrální počet.} 1.\,vydání. Praha: Prometheus, 1997. \ISBN{80-7196-063-2}. Kapitola~6, Určitý integrál, s.\,150--178.
 
@@ -129,7 +140,7 @@
 %% priklad online clanku
 \bibitem{TeX} Přispěvatelé wikipedie. \textit{\TeX} [online]. Wikipedie: Otevřená encyklopedie, c2009, datum poslední revize 7.\,10.\,2009 [citováno 22.\,10.\,2009].
 \url{http://cs.wikipedia.org/wiki/TeX}.
-
+\end{comment}
 \end{thebibliography}
 
 \end{document}

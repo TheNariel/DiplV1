@@ -130,7 +130,7 @@ namespace DiplV1
             {
                 for (int y = 0; y < height; y++)
                 {
-                  /*  OC = 255;
+                    OC = 255;
                     if (O[y, x] > 0)
                     {
                         OC = 0;
@@ -138,10 +138,10 @@ namespace DiplV1
 
                     //OC = (int)O[y, x];
                     
-                    BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));*/
+                    BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
 
-                    int c = (int)O[y, x];
-                    BitO.SetPixel(x, y, Color.FromArgb(c,c,c));
+                    //int c = (int)O[y, x];
+                    //BitO.SetPixel(x, y, Color.FromArgb(c,c,c));
                 }
             }
 
