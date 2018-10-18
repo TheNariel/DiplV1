@@ -9,7 +9,7 @@ namespace DiplV1
         double z;
         double[,] netStatus;
         double[,] b, a, output;
-        Bitmap input;
+        double[,] input;
         int widht, height;
 
         public double Z
@@ -60,7 +60,7 @@ namespace DiplV1
                 output = value;
             }
         }
-        public Bitmap I
+        public double[,] I
         {
             get
             {
@@ -102,7 +102,7 @@ namespace DiplV1
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        netStatus[y, x] = I.GetPixel(x,y).B;
+                        netStatus[y, x] = I[y, x];
                     }
                 }
             }
@@ -120,9 +120,9 @@ namespace DiplV1
 
         public double[,] ProcessNetwork()
         {
-            for (int x = 1; x < widht - 1; x++)
+            for (int x = 0; x <= widht-1; x++)
             {
-                for (int y = 1; y < height - 1; y++)
+                for (int y = 0; y <=height-1; y++)
                 {
                     Output[y, x] = coutOutput(newState(x, y));
                     Debug.Write(Output[y, x] + "|");
@@ -136,13 +136,18 @@ namespace DiplV1
         {
             double ret = 0;
             double feedback = 0, feedforward = 0;
-
+            int xx, yy;
             for (int i = -1; i <= 1; i++)
             {
                 for (int e = -1; e <= 1; e++)
                 {
-                    Color test = I.GetPixel(x + e, y + i);
-                    feedforward += B[i + 1, e + 1] * test.B;
+                    xx = x + e;
+                    yy = y + i;
+                    if (xx < 0) xx = 0;
+                    if (yy < 0) yy = 0;
+                    if (xx > widht-1) xx = widht - 1;
+                    if (yy > height - 1) yy = height - 1;
+                    feedforward += B[i + 1, e + 1] * I[yy, xx];
 
                 }
 
@@ -151,7 +156,13 @@ namespace DiplV1
             {
                 for (int e = -1; e <= 1; e++)
                 {
-                    feedback += A[e + 1, i + 1] * netStatus[y + e, x + i];
+                    xx = x + e;
+                    yy = y + i;
+                    if (xx < 0) xx = 0;
+                    if (yy < 0) yy = 0;
+                    if (xx > widht - 1) xx = widht - 1;
+                    if (yy > height - 1) yy = height - 1;
+                    feedback += A[i + 1, e + 1] * netStatus[yy, xx];
                 }
             }
 

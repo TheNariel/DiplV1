@@ -15,9 +15,17 @@ namespace DiplV1
     {
         int drawWidht = 500, drawHeight = 500;
         Bitmap sourceImage = null;
+        private object v;
+
         public PicForm(Bitmap image)
         {
             sourceImage = image;
+            InitializeComponent();
+        }
+
+        public PicForm(object v)
+        {
+            sourceImage = (Bitmap)v;
             InitializeComponent();
         }
 

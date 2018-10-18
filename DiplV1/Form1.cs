@@ -16,12 +16,14 @@ namespace DiplV1
 {
     public partial class Form1 : Form
     {
+        int t;
         Bitmap sourceImage = null;
         Bitmap resultImage = null;
         String activeFileName;
         double Z;
         double[,] B = new double[3, 3], A = new double[3, 3];
         double[,] O;
+        public double[,] Input;
         int widht = 0, height = 0;
         public Form1()
         {
@@ -43,20 +45,43 @@ namespace DiplV1
                 fileName.Text = activeFileName;
                 createNewPicForm(sourceImage, "Source Image: " + activeFileName);
 
+                Input = new double[widht, height];
+                for (int x = 0; x < widht; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
+                    }
+                }
+
                 Start.Enabled = true;
+
             }
         }
+        private double getInput(int color)
+        {
+            double ret = (double)color / 128;
+            return  (ret - 1)*(-1);
+        }
+        private int getOutput(double ret)
+        {
+            ret = ret * (-1);
+            int color = (int)((ret + 1) * 128);
+            if (color > 255) color = 255;
+            if (color < 0) color = 0;
 
+            return color;
+        }
         private void Start_Click(object sender, EventArgs e)
         {
             FillParametrs();
-
+            t = 0;
             Network Net = new Network(widht, height);
 
             Net.Z = Z;
             Net.B = B;
             Net.A = A;
-            Net.I = sourceImage;
+            Net.I = Input;
             Net.Output = new double[height, widht];
             Net.inicializeNetwork(rBInput.Checked);
 
@@ -65,8 +90,19 @@ namespace DiplV1
 
 
             drawIO();
+
+          /*  for (int i = 0; i < 2; i++)
+            {
+                t++;
+                Net.I = (double[,])O.Clone();
+                O = Net.ProcessNetwork();
+
+
+                drawIO();
+                
+            }*/
         }
-  
+
         private void FillParametrs()
         {
             Z = Double.Parse(Z19.Text);
@@ -97,19 +133,37 @@ namespace DiplV1
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Bitmap BitO = new Bitmap(3, 3);
-            
+            Bitmap BitO = new Bitmap(5, 5);
+
             BitO.SetPixel(0, 0, Color.FromArgb(255, 255, 255));
             BitO.SetPixel(0, 1, Color.FromArgb(255, 255, 255));
             BitO.SetPixel(0, 2, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(0, 3, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(0, 4, Color.FromArgb(255, 255, 255));
 
             BitO.SetPixel(1, 0, Color.FromArgb(255, 255, 255));
             BitO.SetPixel(1, 1, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(1, 2, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(1, 2, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(1, 3, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(1, 4, Color.FromArgb(255, 255, 255));
 
             BitO.SetPixel(2, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(2, 1, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(2, 2, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(2, 1, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(2, 2, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(2, 3, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(2, 4, Color.FromArgb(255, 255, 255));
+
+            BitO.SetPixel(3, 0, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(3, 1, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(3, 2, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(3, 3, Color.FromArgb(0, 0, 0));
+            BitO.SetPixel(3, 4, Color.FromArgb(255, 255, 255));
+
+            BitO.SetPixel(4, 0, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(4, 1, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(4, 2, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(4, 3, Color.FromArgb(255, 255, 255));
+            BitO.SetPixel(4, 4, Color.FromArgb(255, 255, 255));
 
 
             sourceImage = BitO;
@@ -118,6 +172,16 @@ namespace DiplV1
             activeFileName = "...test...";
             fileName.Text = activeFileName;
             createNewPicForm(sourceImage, "Source Image: " + activeFileName);
+
+
+            Input = new double[widht, height];
+            for (int x = 0; x < widht; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
+                }
+            }
 
             Start.Enabled = true;
         }
@@ -130,28 +194,19 @@ namespace DiplV1
             {
                 for (int y = 0; y < height; y++)
                 {
-                    OC = 255;
-                    if (O[y, x] > 0)
-                    {
-                        OC = 0;
-                    }
-
-                    //OC = (int)O[y, x];
-                    
+                    OC = getOutput(O[y, x]);
                     BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
 
-                    //int c = (int)O[y, x];
-                    //BitO.SetPixel(x, y, Color.FromArgb(c,c,c));
                 }
             }
 
 
-            createNewPicForm(BitO, "Result for: " + activeFileName);
+            createNewPicForm(BitO, t+" :Result for: " + activeFileName);
 
         }
         private void createNewPicForm(Bitmap image, String name)
         {
-            PicForm picForm = new PicForm(image);
+            PicForm picForm = new PicForm(image.Clone());
             picForm.Text = name;
             picForm.Show();
         }
