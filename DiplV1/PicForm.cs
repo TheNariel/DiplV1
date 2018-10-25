@@ -15,7 +15,6 @@ namespace DiplV1
     {
         int drawWidht = 500, drawHeight = 500;
         Bitmap sourceImage = null;
-        private object v;
 
         public PicForm(Bitmap image)
         {
@@ -47,6 +46,12 @@ namespace DiplV1
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.CreatePrompt = true;
+            saveFileDialog1.OverwritePrompt = true;
+
+            saveFileDialog1.DefaultExt = "bmp";
+            saveFileDialog1.Filter =
+                "Bmp files (*.bmp)|*.bmp|All files (*.*)|*.*";
             saveFileDialog1.ShowDialog();
         }
 

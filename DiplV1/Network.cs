@@ -11,6 +11,8 @@ namespace DiplV1
         double[,] b, a, output;
         double[,] input;
         int widht, height;
+        double bounVaule;
+        Boolean fluxBoundry;
 
         public double Z
         {
@@ -86,6 +88,8 @@ namespace DiplV1
             }
         }
 
+        public double BounVaule { get => bounVaule; set => bounVaule = value; }
+        public bool FluxBoundry { get => fluxBoundry; set => fluxBoundry = value; }
 
         public Network(int widht, int height)
         {
@@ -94,7 +98,7 @@ namespace DiplV1
             netStatus = new double[height, widht];
         }
 
-        public void inicializeNetwork(Boolean inputAsOutput)
+        public void inicializeNetwork(Boolean inputAsOutput, string stateDef)
         {
             if (inputAsOutput)
             {
@@ -112,7 +116,7 @@ namespace DiplV1
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        netStatus[y, x] = 0;
+                        netStatus[y, x] = Double.Parse(stateDef); ;
                     }
                 }
             }
@@ -120,14 +124,14 @@ namespace DiplV1
 
         public double[,] ProcessNetwork()
         {
-            for (int x = 0; x <= widht-1; x++)
+            for (int x = 0; x <= widht - 1; x++)
             {
-                for (int y = 0; y <=height-1; y++)
+                for (int y = 0; y <= height - 1; y++)
                 {
                     Output[y, x] = coutOutput(newState(x, y));
-                    Debug.Write(Output[y, x] + "|");
+                   // Debug.Write(Output[y, x] + "|");
                 }
-                Debug.WriteLine(" ");
+               // Debug.WriteLine(" ");
             }
             return Output;
         }
@@ -143,11 +147,27 @@ namespace DiplV1
                 {
                     xx = x + e;
                     yy = y + i;
-                    if (xx < 0) xx = 0;
-                    if (yy < 0) yy = 0;
-                    if (xx > widht-1) xx = widht - 1;
-                    if (yy > height - 1) yy = height - 1;
-                    feedforward += B[i + 1, e + 1] * I[yy, xx];
+                    if (fluxBoundry)
+                    {
+                        if (xx < 0) xx = 0;
+                        if (yy < 0) yy = 0;
+                        if (xx > widht - 1) xx = widht - 1;
+                        if (yy > height - 1) yy = height - 1;
+                        feedforward += B[i + 1, e + 1] * I[yy, xx];
+                    }
+                    else
+                    {
+                        if (xx < 0 || yy < 0 || xx > widht - 1 || yy > height - 1)
+                        {
+                            feedback += B[i + 1, e + 1] * bounVaule;
+                        }
+                        else
+                        {
+                            feedforward += B[i + 1, e + 1] * I[yy, xx];
+                        }
+                    }
+
+
 
                 }
 
@@ -158,11 +178,25 @@ namespace DiplV1
                 {
                     xx = x + e;
                     yy = y + i;
-                    if (xx < 0) xx = 0;
-                    if (yy < 0) yy = 0;
-                    if (xx > widht - 1) xx = widht - 1;
-                    if (yy > height - 1) yy = height - 1;
-                    feedback += A[i + 1, e + 1] * netStatus[yy, xx];
+                    if (fluxBoundry)
+                    {
+                        if (xx < 0) xx = 0;
+                        if (yy < 0) yy = 0;
+                        if (xx > widht - 1) xx = widht - 1;
+                        if (yy > height - 1) yy = height - 1;
+                        feedback += A[i + 1, e + 1] * netStatus[yy, xx];
+                    }
+                    else
+                    {
+                        if (xx < 0 || yy < 0 || xx > widht - 1 || yy > height - 1)
+                        {
+                            feedback += A[i + 1, e + 1] * bounVaule;
+                        }
+                        else
+                        {
+                            feedback += A[i + 1, e + 1] * netStatus[yy, xx];
+                        }
+                    }
                 }
             }
 

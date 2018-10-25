@@ -45,7 +45,7 @@ namespace DiplV1
                 fileName.Text = activeFileName;
                 createNewPicForm(sourceImage, "Source Image: " + activeFileName);
 
-                Input = new double[widht, height];
+                Input = new double[height, widht];
                 for (int x = 0; x < widht; x++)
                 {
                     for (int y = 0; y < height; y++)
@@ -61,14 +61,26 @@ namespace DiplV1
         private double getInput(int color)
         {
             double ret = (double)color / 128;
-            return  (ret - 1)*(-1);
+            return (ret - 1) * (-1);
         }
         private int getOutput(double ret)
         {
-            ret = ret * (-1);
-            int color = (int)((ret + 1) * 128);
-            if (color > 255) color = 255;
-            if (color < 0) color = 0;
+            int color;
+            if (rBGreyScale.Checked)
+            {
+                ret = ret * (-1);
+                color = (int)((ret + 1) * 128);
+                if (color > 255) color = 255;
+                if (color < 0) color = 0;
+            }
+            else
+            {
+                color = 0;
+                if (ret <= Z) color = 255;
+            }
+
+
+
 
             return color;
         }
@@ -82,8 +94,10 @@ namespace DiplV1
             Net.B = B;
             Net.A = A;
             Net.I = Input;
+            Net.BounVaule = Double.Parse(arbBound.Text);
+            Net.FluxBoundry = rBFlux.Checked;
             Net.Output = new double[height, widht];
-            Net.inicializeNetwork(rBInput.Checked);
+            Net.inicializeNetwork(rBInput.Checked, arbState.Text);
 
 
             O = Net.ProcessNetwork();
@@ -91,16 +105,6 @@ namespace DiplV1
 
             drawIO();
 
-          /*  for (int i = 0; i < 2; i++)
-            {
-                t++;
-                Net.I = (double[,])O.Clone();
-                O = Net.ProcessNetwork();
-
-
-                drawIO();
-                
-            }*/
         }
 
         private void FillParametrs()
@@ -130,60 +134,30 @@ namespace DiplV1
 
         }
 
+
+        private void rBInput_CheckedChanged(object sender, EventArgs e)
+        {
+            arbState.Enabled = false;
+        }
+
+        private void rBArb_CheckedChanged(object sender, EventArgs e)
+        {
+            arbState.Enabled = true;
+        }
+
+        private void rBFlux_CheckedChanged(object sender, EventArgs e)
+        {
+            arbBound.Enabled = false;
+        }
+
+        private void rBArbBound_CheckedChanged(object sender, EventArgs e)
+        {
+            arbBound.Enabled = true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Bitmap BitO = new Bitmap(5, 5);
-
-            BitO.SetPixel(0, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(0, 1, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(0, 2, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(0, 3, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(0, 4, Color.FromArgb(255, 255, 255));
-
-            BitO.SetPixel(1, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(1, 1, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(1, 2, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(1, 3, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(1, 4, Color.FromArgb(255, 255, 255));
-
-            BitO.SetPixel(2, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(2, 1, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(2, 2, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(2, 3, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(2, 4, Color.FromArgb(255, 255, 255));
-
-            BitO.SetPixel(3, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(3, 1, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(3, 2, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(3, 3, Color.FromArgb(0, 0, 0));
-            BitO.SetPixel(3, 4, Color.FromArgb(255, 255, 255));
-
-            BitO.SetPixel(4, 0, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(4, 1, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(4, 2, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(4, 3, Color.FromArgb(255, 255, 255));
-            BitO.SetPixel(4, 4, Color.FromArgb(255, 255, 255));
-
-
-            sourceImage = BitO;
-            widht = sourceImage.Width;
-            height = sourceImage.Height;
-            activeFileName = "...test...";
-            fileName.Text = activeFileName;
-            createNewPicForm(sourceImage, "Source Image: " + activeFileName);
-
-
-            Input = new double[widht, height];
-            for (int x = 0; x < widht; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
-                }
-            }
-
-            Start.Enabled = true;
         }
 
         private void drawIO()
@@ -201,9 +175,10 @@ namespace DiplV1
             }
 
 
-            createNewPicForm(BitO, t+" :Result for: " + activeFileName);
+            createNewPicForm(BitO, t + " :Result for: " + activeFileName);
 
         }
+
         private void createNewPicForm(Bitmap image, String name)
         {
             PicForm picForm = new PicForm(image.Clone());
@@ -211,7 +186,73 @@ namespace DiplV1
             picForm.Show();
         }
 
+
+
+
+        private void edgeDetectionForGeyscaleImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            A01.Text = "0";
+            A02.Text = "0";
+            A03.Text = "0";
+            A04.Text = "0";
+            A05.Text = "2";
+            A06.Text = "0";
+            A07.Text = "0";
+            A08.Text = "0";
+            A09.Text = "0";
+
+            B10.Text = "-1";
+            B11.Text = "-1";
+            B12.Text = "-1";
+            B13.Text = "-1";
+            B14.Text = "8";
+            B15.Text = "-1";
+            B16.Text = "-1";
+            B17.Text = "-1";
+            B18.Text = "-1";
+
+            Z19.Text = "-0.5";
+
+            rBBinOut.Checked = true;
+            rBArb.Checked = true;
+            arbState.Text = "0";
+            rBFlux.Checked = true;
+
+            recomendLabel.Text = "Recomended image for example is \n \"avergra2.bmp\" from PicLib";
+        }
+
+        private void verticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            A01.Text = "0";
+            A02.Text = "0";
+            A03.Text = "0";
+            A04.Text = "0";
+            A05.Text = "1";
+            A06.Text = "0";
+            A07.Text = "0";
+            A08.Text = "0";
+            A09.Text = "0";
+
+            B10.Text = "0";
+            B11.Text = "-1";
+            B12.Text = "0";
+            B13.Text = "0";
+            B14.Text = "1";
+            B15.Text = "0";
+            B16.Text = "0";
+            B17.Text = "-1";
+            B18.Text = "0";
+
+            Z19.Text = "-2";
+
+            rBGreyScale.Checked = true;
+            rBArb.Checked = true;
+            arbState.Text = "0";
+            rBArbBound.Checked = true;
+            arbBound.Text = "-1";
+
+
+            recomendLabel.Text = "Recomended image for example is \n \"Deldiag1.bmp\" from PicLib";
+        }
     }
-
-
 }

@@ -54,43 +54,44 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Start = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.rBArbBound = new System.Windows.Forms.RadioButton();
+            this.rBFlux = new System.Windows.Forms.RadioButton();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.rBInput = new System.Windows.Forms.RadioButton();
             this.rBArb = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.fileName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Initial = new System.Windows.Forms.GroupBox();
+            this.arbState = new System.Windows.Forms.TextBox();
+            this.Matrixes = new System.Windows.Forms.GroupBox();
+            this.Inpt = new System.Windows.Forms.GroupBox();
+            this.Boundary = new System.Windows.Forms.GroupBox();
+            this.arbBound = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rBBinOut = new System.Windows.Forms.RadioButton();
+            this.rBGreyScale = new System.Windows.Forms.RadioButton();
+            this.examplesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalDeletebineryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recomendLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.Initial.SuspendLayout();
+            this.Matrixes.SuspendLayout();
+            this.Inpt.SuspendLayout();
+            this.Boundary.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.souborToolStripMenuItem});
+            this.souborToolStripMenuItem,
+            this.examplesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(210, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(336, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,7 +112,7 @@
             // 
             // B10
             // 
-            this.B10.Location = new System.Drawing.Point(6, 118);
+            this.B10.Location = new System.Drawing.Point(6, 132);
             this.B10.Name = "B10";
             this.B10.Size = new System.Drawing.Size(50, 20);
             this.B10.TabIndex = 10;
@@ -119,7 +120,7 @@
             // 
             // B13
             // 
-            this.B13.Location = new System.Drawing.Point(6, 144);
+            this.B13.Location = new System.Drawing.Point(6, 158);
             this.B13.Name = "B13";
             this.B13.Size = new System.Drawing.Size(50, 20);
             this.B13.TabIndex = 13;
@@ -127,7 +128,7 @@
             // 
             // B16
             // 
-            this.B16.Location = new System.Drawing.Point(6, 170);
+            this.B16.Location = new System.Drawing.Point(6, 184);
             this.B16.Name = "B16";
             this.B16.Size = new System.Drawing.Size(50, 20);
             this.B16.TabIndex = 16;
@@ -135,7 +136,7 @@
             // 
             // B11
             // 
-            this.B11.Location = new System.Drawing.Point(62, 118);
+            this.B11.Location = new System.Drawing.Point(62, 132);
             this.B11.Name = "B11";
             this.B11.Size = new System.Drawing.Size(50, 20);
             this.B11.TabIndex = 11;
@@ -143,7 +144,7 @@
             // 
             // B12
             // 
-            this.B12.Location = new System.Drawing.Point(118, 118);
+            this.B12.Location = new System.Drawing.Point(118, 132);
             this.B12.Name = "B12";
             this.B12.Size = new System.Drawing.Size(50, 20);
             this.B12.TabIndex = 12;
@@ -151,7 +152,7 @@
             // 
             // B14
             // 
-            this.B14.Location = new System.Drawing.Point(62, 144);
+            this.B14.Location = new System.Drawing.Point(62, 158);
             this.B14.Name = "B14";
             this.B14.Size = new System.Drawing.Size(50, 20);
             this.B14.TabIndex = 14;
@@ -159,7 +160,7 @@
             // 
             // B15
             // 
-            this.B15.Location = new System.Drawing.Point(118, 144);
+            this.B15.Location = new System.Drawing.Point(118, 158);
             this.B15.Name = "B15";
             this.B15.Size = new System.Drawing.Size(50, 20);
             this.B15.TabIndex = 15;
@@ -167,7 +168,7 @@
             // 
             // B17
             // 
-            this.B17.Location = new System.Drawing.Point(62, 170);
+            this.B17.Location = new System.Drawing.Point(62, 184);
             this.B17.Name = "B17";
             this.B17.Size = new System.Drawing.Size(50, 20);
             this.B17.TabIndex = 17;
@@ -175,7 +176,7 @@
             // 
             // B18
             // 
-            this.B18.Location = new System.Drawing.Point(118, 170);
+            this.B18.Location = new System.Drawing.Point(118, 184);
             this.B18.Name = "B18";
             this.B18.Size = new System.Drawing.Size(50, 20);
             this.B18.TabIndex = 18;
@@ -183,7 +184,7 @@
             // 
             // A09
             // 
-            this.A09.Location = new System.Drawing.Point(118, 72);
+            this.A09.Location = new System.Drawing.Point(118, 86);
             this.A09.Name = "A09";
             this.A09.Size = new System.Drawing.Size(50, 20);
             this.A09.TabIndex = 9;
@@ -191,7 +192,7 @@
             // 
             // A08
             // 
-            this.A08.Location = new System.Drawing.Point(62, 72);
+            this.A08.Location = new System.Drawing.Point(62, 86);
             this.A08.Name = "A08";
             this.A08.Size = new System.Drawing.Size(50, 20);
             this.A08.TabIndex = 8;
@@ -199,7 +200,7 @@
             // 
             // A06
             // 
-            this.A06.Location = new System.Drawing.Point(118, 46);
+            this.A06.Location = new System.Drawing.Point(118, 60);
             this.A06.Name = "A06";
             this.A06.Size = new System.Drawing.Size(50, 20);
             this.A06.TabIndex = 6;
@@ -207,15 +208,15 @@
             // 
             // A05
             // 
-            this.A05.Location = new System.Drawing.Point(62, 46);
+            this.A05.Location = new System.Drawing.Point(62, 60);
             this.A05.Name = "A05";
             this.A05.Size = new System.Drawing.Size(50, 20);
             this.A05.TabIndex = 5;
-            this.A05.Text = "0";
+            this.A05.Text = "2";
             // 
             // A03
             // 
-            this.A03.Location = new System.Drawing.Point(118, 20);
+            this.A03.Location = new System.Drawing.Point(118, 34);
             this.A03.Name = "A03";
             this.A03.Size = new System.Drawing.Size(50, 20);
             this.A03.TabIndex = 3;
@@ -223,7 +224,7 @@
             // 
             // A02
             // 
-            this.A02.Location = new System.Drawing.Point(62, 20);
+            this.A02.Location = new System.Drawing.Point(62, 34);
             this.A02.Name = "A02";
             this.A02.Size = new System.Drawing.Size(50, 20);
             this.A02.TabIndex = 2;
@@ -231,7 +232,7 @@
             // 
             // A07
             // 
-            this.A07.Location = new System.Drawing.Point(6, 72);
+            this.A07.Location = new System.Drawing.Point(6, 86);
             this.A07.Name = "A07";
             this.A07.Size = new System.Drawing.Size(50, 20);
             this.A07.TabIndex = 7;
@@ -239,7 +240,7 @@
             // 
             // A04
             // 
-            this.A04.Location = new System.Drawing.Point(6, 46);
+            this.A04.Location = new System.Drawing.Point(6, 60);
             this.A04.Name = "A04";
             this.A04.Size = new System.Drawing.Size(50, 20);
             this.A04.TabIndex = 4;
@@ -247,7 +248,7 @@
             // 
             // A01
             // 
-            this.A01.Location = new System.Drawing.Point(6, 20);
+            this.A01.Location = new System.Drawing.Point(6, 34);
             this.A01.Name = "A01";
             this.A01.Size = new System.Drawing.Size(50, 20);
             this.A01.TabIndex = 1;
@@ -255,16 +256,16 @@
             // 
             // Z19
             // 
-            this.Z19.Location = new System.Drawing.Point(62, 216);
+            this.Z19.Location = new System.Drawing.Point(62, 230);
             this.Z19.Name = "Z19";
             this.Z19.Size = new System.Drawing.Size(50, 20);
             this.Z19.TabIndex = 19;
-            this.Z19.Text = "-1";
+            this.Z19.Text = "-0.5";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 200);
+            this.label1.Location = new System.Drawing.Point(80, 214);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
             this.label1.TabIndex = 22;
@@ -273,7 +274,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(80, 4);
+            this.label2.Location = new System.Drawing.Point(80, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 23;
@@ -282,7 +283,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(80, 102);
+            this.label3.Location = new System.Drawing.Point(80, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 13);
             this.label3.TabIndex = 24;
@@ -291,7 +292,7 @@
             // Start
             // 
             this.Start.Enabled = false;
-            this.Start.Location = new System.Drawing.Point(78, 357);
+            this.Start.Location = new System.Drawing.Point(279, 336);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(50, 23);
             this.Start.TabIndex = 25;
@@ -299,206 +300,55 @@
             this.Start.UseVisualStyleBackColor = true;
             this.Start.Click += new System.EventHandler(this.Start_Click);
             // 
-            // tabControl1
+            // rBArbBound
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(188, 270);
-            this.tabControl1.TabIndex = 27;
+            this.rBArbBound.AutoSize = true;
+            this.rBArbBound.Location = new System.Drawing.Point(6, 18);
+            this.rBArbBound.Name = "rBArbBound";
+            this.rBArbBound.Size = new System.Drawing.Size(63, 17);
+            this.rBArbBound.TabIndex = 1;
+            this.rBArbBound.Text = "Arbitrary";
+            this.rBArbBound.UseVisualStyleBackColor = true;
+            this.rBArbBound.CheckedChanged += new System.EventHandler(this.rBArbBound_CheckedChanged);
             // 
-            // tabPage1
+            // rBFlux
             // 
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.A01);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.B10);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.B13);
-            this.tabPage1.Controls.Add(this.Z19);
-            this.tabPage1.Controls.Add(this.B16);
-            this.tabPage1.Controls.Add(this.A09);
-            this.tabPage1.Controls.Add(this.B11);
-            this.tabPage1.Controls.Add(this.A08);
-            this.tabPage1.Controls.Add(this.B12);
-            this.tabPage1.Controls.Add(this.A06);
-            this.tabPage1.Controls.Add(this.B14);
-            this.tabPage1.Controls.Add(this.A05);
-            this.tabPage1.Controls.Add(this.B15);
-            this.tabPage1.Controls.Add(this.A03);
-            this.tabPage1.Controls.Add(this.B17);
-            this.tabPage1.Controls.Add(this.A02);
-            this.tabPage1.Controls.Add(this.B18);
-            this.tabPage1.Controls.Add(this.A07);
-            this.tabPage1.Controls.Add(this.A04);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(180, 244);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Matrix";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.radioButton6);
-            this.tabPage2.Controls.Add(this.radioButton5);
-            this.tabPage2.Controls.Add(this.radioButton4);
-            this.tabPage2.Controls.Add(this.radioButton3);
-            this.tabPage2.Controls.Add(this.radioButton2);
-            this.tabPage2.Controls.Add(this.radioButton1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(180, 244);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Input";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(9, 180);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(85, 17);
-            this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "radioButton6";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(9, 148);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 17);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "radioButton5";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(9, 116);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(9, 84);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(9, 51);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.radioButton7);
-            this.tabPage3.Controls.Add(this.radioButton8);
-            this.tabPage3.Controls.Add(this.radioButton9);
-            this.tabPage3.Controls.Add(this.radioButton10);
-            this.tabPage3.Controls.Add(this.radioButton11);
-            this.tabPage3.Controls.Add(this.radioButton12);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(180, 244);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Boundry";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(21, 182);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(85, 17);
-            this.radioButton7.TabIndex = 11;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "radioButton7";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(21, 150);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(85, 17);
-            this.radioButton8.TabIndex = 10;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "radioButton8";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            // 
-            // radioButton9
-            // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(21, 118);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(85, 17);
-            this.radioButton9.TabIndex = 9;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "radioButton9";
-            this.radioButton9.UseVisualStyleBackColor = true;
+            this.rBFlux.AutoSize = true;
+            this.rBFlux.Checked = true;
+            this.rBFlux.Location = new System.Drawing.Point(6, 41);
+            this.rBFlux.Name = "rBFlux";
+            this.rBFlux.Size = new System.Drawing.Size(44, 17);
+            this.rBFlux.TabIndex = 0;
+            this.rBFlux.TabStop = true;
+            this.rBFlux.Text = "Flux";
+            this.rBFlux.UseVisualStyleBackColor = true;
+            this.rBFlux.CheckedChanged += new System.EventHandler(this.rBFlux_CheckedChanged);
             // 
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(21, 86);
+            this.radioButton10.Location = new System.Drawing.Point(6, 65);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(91, 17);
             this.radioButton10.TabIndex = 8;
-            this.radioButton10.TabStop = true;
             this.radioButton10.Text = "radioButton10";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // radioButton11
             // 
             this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(21, 53);
+            this.radioButton11.Location = new System.Drawing.Point(6, 42);
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(91, 17);
             this.radioButton11.TabIndex = 7;
-            this.radioButton11.TabStop = true;
             this.radioButton11.Text = "radioButton11";
             this.radioButton11.UseVisualStyleBackColor = true;
             // 
             // radioButton12
             // 
             this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(21, 21);
+            this.radioButton12.Checked = true;
+            this.radioButton12.Location = new System.Drawing.Point(6, 19);
             this.radioButton12.Name = "radioButton12";
             this.radioButton12.Size = new System.Drawing.Size(91, 17);
             this.radioButton12.TabIndex = 6;
@@ -506,43 +356,34 @@
             this.radioButton12.Text = "radioButton12";
             this.radioButton12.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.rBInput);
-            this.tabPage4.Controls.Add(this.rBArb);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(180, 244);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Initial";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // rBInput
             // 
             this.rBInput.AutoSize = true;
-            this.rBInput.Location = new System.Drawing.Point(16, 40);
+            this.rBInput.Location = new System.Drawing.Point(6, 42);
             this.rBInput.Name = "rBInput";
             this.rBInput.Size = new System.Drawing.Size(49, 17);
             this.rBInput.TabIndex = 7;
             this.rBInput.Text = "Input";
             this.rBInput.UseVisualStyleBackColor = true;
+            this.rBInput.CheckedChanged += new System.EventHandler(this.rBInput_CheckedChanged);
             // 
             // rBArb
             // 
             this.rBArb.AutoSize = true;
             this.rBArb.Checked = true;
-            this.rBArb.Location = new System.Drawing.Point(16, 17);
+            this.rBArb.Location = new System.Drawing.Point(6, 19);
             this.rBArb.Name = "rBArb";
-            this.rBArb.Size = new System.Drawing.Size(78, 17);
+            this.rBArb.Size = new System.Drawing.Size(63, 17);
             this.rBArb.TabIndex = 6;
             this.rBArb.TabStop = true;
-            this.rBArb.Text = "Arbitrary (0)";
+            this.rBArb.Text = "Arbitrary";
             this.rBArb.UseVisualStyleBackColor = true;
+            this.rBArb.CheckedChanged += new System.EventHandler(this.rBArb_CheckedChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 313);
+            this.label4.Location = new System.Drawing.Point(154, 291);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 28;
@@ -551,32 +392,176 @@
             // fileName
             // 
             this.fileName.AutoSize = true;
-            this.fileName.Location = new System.Drawing.Point(73, 313);
+            this.fileName.Location = new System.Drawing.Point(217, 291);
             this.fileName.MaximumSize = new System.Drawing.Size(100, 0);
             this.fileName.Name = "fileName";
             this.fileName.Size = new System.Drawing.Size(37, 13);
             this.fileName.TabIndex = 29;
             this.fileName.Text = "No file";
             // 
-            // button1
+            // Initial
             // 
-            this.button1.Location = new System.Drawing.Point(135, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Initial.Controls.Add(this.arbState);
+            this.Initial.Controls.Add(this.rBArb);
+            this.Initial.Controls.Add(this.rBInput);
+            this.Initial.Location = new System.Drawing.Point(193, 27);
+            this.Initial.Name = "Initial";
+            this.Initial.Size = new System.Drawing.Size(136, 64);
+            this.Initial.TabIndex = 31;
+            this.Initial.TabStop = false;
+            this.Initial.Text = "Initial state.";
+            // 
+            // arbState
+            // 
+            this.arbState.Location = new System.Drawing.Point(75, 18);
+            this.arbState.Name = "arbState";
+            this.arbState.Size = new System.Drawing.Size(50, 20);
+            this.arbState.TabIndex = 26;
+            this.arbState.Text = "0";
+            // 
+            // Matrixes
+            // 
+            this.Matrixes.Controls.Add(this.A02);
+            this.Matrixes.Controls.Add(this.A05);
+            this.Matrixes.Controls.Add(this.B15);
+            this.Matrixes.Controls.Add(this.label2);
+            this.Matrixes.Controls.Add(this.B14);
+            this.Matrixes.Controls.Add(this.A03);
+            this.Matrixes.Controls.Add(this.A01);
+            this.Matrixes.Controls.Add(this.A06);
+            this.Matrixes.Controls.Add(this.B17);
+            this.Matrixes.Controls.Add(this.B12);
+            this.Matrixes.Controls.Add(this.A08);
+            this.Matrixes.Controls.Add(this.B18);
+            this.Matrixes.Controls.Add(this.B11);
+            this.Matrixes.Controls.Add(this.A07);
+            this.Matrixes.Controls.Add(this.A09);
+            this.Matrixes.Controls.Add(this.label3);
+            this.Matrixes.Controls.Add(this.A04);
+            this.Matrixes.Controls.Add(this.B16);
+            this.Matrixes.Controls.Add(this.B10);
+            this.Matrixes.Controls.Add(this.Z19);
+            this.Matrixes.Controls.Add(this.B13);
+            this.Matrixes.Controls.Add(this.label1);
+            this.Matrixes.Location = new System.Drawing.Point(12, 27);
+            this.Matrixes.Name = "Matrixes";
+            this.Matrixes.Size = new System.Drawing.Size(175, 261);
+            this.Matrixes.TabIndex = 32;
+            this.Matrixes.TabStop = false;
+            this.Matrixes.Text = "Matrixes";
+            // 
+            // Inpt
+            // 
+            this.Inpt.Controls.Add(this.radioButton12);
+            this.Inpt.Controls.Add(this.radioButton11);
+            this.Inpt.Controls.Add(this.radioButton10);
+            this.Inpt.Location = new System.Drawing.Point(193, 185);
+            this.Inpt.Name = "Inpt";
+            this.Inpt.Size = new System.Drawing.Size(136, 103);
+            this.Inpt.TabIndex = 33;
+            this.Inpt.TabStop = false;
+            this.Inpt.Text = "Input";
+            // 
+            // Boundary
+            // 
+            this.Boundary.Controls.Add(this.arbBound);
+            this.Boundary.Controls.Add(this.rBFlux);
+            this.Boundary.Controls.Add(this.rBArbBound);
+            this.Boundary.Location = new System.Drawing.Point(193, 92);
+            this.Boundary.Name = "Boundary";
+            this.Boundary.Size = new System.Drawing.Size(136, 91);
+            this.Boundary.TabIndex = 33;
+            this.Boundary.TabStop = false;
+            this.Boundary.Text = "Boundary";
+            // 
+            // arbBound
+            // 
+            this.arbBound.Enabled = false;
+            this.arbBound.Location = new System.Drawing.Point(75, 18);
+            this.arbBound.Name = "arbBound";
+            this.arbBound.Size = new System.Drawing.Size(50, 20);
+            this.arbBound.TabIndex = 25;
+            this.arbBound.Text = "0";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rBBinOut);
+            this.groupBox1.Controls.Add(this.rBGreyScale);
+            this.groupBox1.Location = new System.Drawing.Point(12, 294);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(136, 64);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Output";
+            // 
+            // rBBinOut
+            // 
+            this.rBBinOut.AutoSize = true;
+            this.rBBinOut.Checked = true;
+            this.rBBinOut.Location = new System.Drawing.Point(6, 19);
+            this.rBBinOut.Name = "rBBinOut";
+            this.rBBinOut.Size = new System.Drawing.Size(54, 17);
+            this.rBBinOut.TabIndex = 6;
+            this.rBBinOut.TabStop = true;
+            this.rBBinOut.Text = "Binary";
+            this.rBBinOut.UseVisualStyleBackColor = true;
+            // 
+            // rBGreyScale
+            // 
+            this.rBGreyScale.AutoSize = true;
+            this.rBGreyScale.Location = new System.Drawing.Point(6, 42);
+            this.rBGreyScale.Name = "rBGreyScale";
+            this.rBGreyScale.Size = new System.Drawing.Size(75, 17);
+            this.rBGreyScale.TabIndex = 7;
+            this.rBGreyScale.Text = "Grey scale";
+            this.rBGreyScale.UseVisualStyleBackColor = true;
+            // 
+            // examplesToolStripMenuItem
+            // 
+            this.examplesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem,
+            this.verticalDeletebineryToolStripMenuItem});
+            this.examplesToolStripMenuItem.Name = "examplesToolStripMenuItem";
+            this.examplesToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.examplesToolStripMenuItem.Text = "Examples";
+            // 
+            // edgeDetectionForGeyscaleImageToolStripMenuItem
+            // 
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Name = "edgeDetectionForGeyscaleImageToolStripMenuItem";
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Text = "Edge detection (greyscale)";
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Click += new System.EventHandler(this.edgeDetectionForGeyscaleImageToolStripMenuItem_Click);
+            // 
+            // verticalDeletebineryToolStripMenuItem
+            // 
+            this.verticalDeletebineryToolStripMenuItem.Name = "verticalDeletebineryToolStripMenuItem";
+            this.verticalDeletebineryToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.verticalDeletebineryToolStripMenuItem.Text = "Vertical delete (binary)";
+            this.verticalDeletebineryToolStripMenuItem.Click += new System.EventHandler(this.verticalDeletebineryToolStripMenuItem_Click);
+            // 
+            // recomendLabel
+            // 
+            this.recomendLabel.AutoSize = true;
+            this.recomendLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.recomendLabel.Location = new System.Drawing.Point(114, 0);
+            this.recomendLabel.Name = "recomendLabel";
+            this.recomendLabel.Size = new System.Drawing.Size(10, 13);
+            this.recomendLabel.TabIndex = 34;
+            this.recomendLabel.Text = " ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(210, 402);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(336, 363);
+            this.Controls.Add(this.recomendLabel);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.Boundary);
+            this.Controls.Add(this.Inpt);
+            this.Controls.Add(this.Matrixes);
+            this.Controls.Add(this.Initial);
             this.Controls.Add(this.fileName);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -587,15 +572,16 @@
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.Initial.ResumeLayout(false);
+            this.Initial.PerformLayout();
+            this.Matrixes.ResumeLayout(false);
+            this.Matrixes.PerformLayout();
+            this.Inpt.ResumeLayout(false);
+            this.Inpt.PerformLayout();
+            this.Boundary.ResumeLayout(false);
+            this.Boundary.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -628,28 +614,28 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Start;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label fileName;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.RadioButton rBArbBound;
+        private System.Windows.Forms.RadioButton rBFlux;
         private System.Windows.Forms.RadioButton radioButton10;
         private System.Windows.Forms.RadioButton radioButton11;
         private System.Windows.Forms.RadioButton radioButton12;
         private System.Windows.Forms.RadioButton rBInput;
         private System.Windows.Forms.RadioButton rBArb;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox Initial;
+        private System.Windows.Forms.GroupBox Matrixes;
+        private System.Windows.Forms.GroupBox Inpt;
+        private System.Windows.Forms.GroupBox Boundary;
+        private System.Windows.Forms.TextBox arbBound;
+        private System.Windows.Forms.TextBox arbState;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rBBinOut;
+        private System.Windows.Forms.RadioButton rBGreyScale;
+        private System.Windows.Forms.ToolStripMenuItem examplesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem edgeDetectionForGeyscaleImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalDeletebineryToolStripMenuItem;
+        private System.Windows.Forms.Label recomendLabel;
     }
 }
 
