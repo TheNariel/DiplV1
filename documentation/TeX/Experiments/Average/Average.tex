@@ -1,0 +1,40 @@
+\subsubsection{Description}
+This example shows the ability to use Cellular neural networks to produce a binary representation of grey-scale picture base on the average of the pixels. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+\subsubsection{Setup}
+
+\textbf{Input:} Unimportant (all zeros)\\
+\textbf{Boundary conditions:} Fixed.\\
+\textbf{Initial output:} Grey-scale picture
+
+\begin{minipage}{0.9\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 & 1 & 0 \\
+ 1 & 2 & 1 \\
+ 0 & 1 & 0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ 0 & 0 & 0 \\
+ 0 & 0 & 0
+\end{bmatrix}
+Z = 0
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for this experiment}
+\end{minipage}
+
+\subsubsection{Results}
+
+
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Input.png} 
+	\captionof{figure}{Input}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Output.png}
+	\captionof{figure}{Output}
+\end{minipage}

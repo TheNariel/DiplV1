@@ -31,6 +31,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.souborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.examplesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalDeletebineryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.B10 = new System.Windows.Forms.TextBox();
             this.B13 = new System.Windows.Forms.TextBox();
             this.B16 = new System.Windows.Forms.TextBox();
@@ -72,9 +75,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rBBinOut = new System.Windows.Forms.RadioButton();
             this.rBGreyScale = new System.Windows.Forms.RadioButton();
-            this.examplesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verticalDeletebineryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recomendLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.Initial.SuspendLayout();
@@ -91,7 +91,7 @@
             this.examplesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(336, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(340, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,6 +109,29 @@
             this.openItem.Size = new System.Drawing.Size(103, 22);
             this.openItem.Text = "Open";
             this.openItem.Click += new System.EventHandler(this.openItem_Click);
+            // 
+            // examplesToolStripMenuItem
+            // 
+            this.examplesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem,
+            this.verticalDeletebineryToolStripMenuItem});
+            this.examplesToolStripMenuItem.Name = "examplesToolStripMenuItem";
+            this.examplesToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.examplesToolStripMenuItem.Text = "Examples";
+            // 
+            // edgeDetectionForGeyscaleImageToolStripMenuItem
+            // 
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Name = "edgeDetectionForGeyscaleImageToolStripMenuItem";
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Text = "Edge detection (greyscale)";
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Click += new System.EventHandler(this.edgeDetectionForGeyscaleImageToolStripMenuItem_Click);
+            // 
+            // verticalDeletebineryToolStripMenuItem
+            // 
+            this.verticalDeletebineryToolStripMenuItem.Name = "verticalDeletebineryToolStripMenuItem";
+            this.verticalDeletebineryToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.verticalDeletebineryToolStripMenuItem.Text = "Vertical delete (binary)";
+            this.verticalDeletebineryToolStripMenuItem.Click += new System.EventHandler(this.verticalDeletebineryToolStripMenuItem_Click);
             // 
             // B10
             // 
@@ -516,29 +539,6 @@
             this.rBGreyScale.Text = "Grey scale";
             this.rBGreyScale.UseVisualStyleBackColor = true;
             // 
-            // examplesToolStripMenuItem
-            // 
-            this.examplesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem,
-            this.verticalDeletebineryToolStripMenuItem});
-            this.examplesToolStripMenuItem.Name = "examplesToolStripMenuItem";
-            this.examplesToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.examplesToolStripMenuItem.Text = "Examples";
-            // 
-            // edgeDetectionForGeyscaleImageToolStripMenuItem
-            // 
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Name = "edgeDetectionForGeyscaleImageToolStripMenuItem";
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Text = "Edge detection (greyscale)";
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Click += new System.EventHandler(this.edgeDetectionForGeyscaleImageToolStripMenuItem_Click);
-            // 
-            // verticalDeletebineryToolStripMenuItem
-            // 
-            this.verticalDeletebineryToolStripMenuItem.Name = "verticalDeletebineryToolStripMenuItem";
-            this.verticalDeletebineryToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.verticalDeletebineryToolStripMenuItem.Text = "Vertical delete (binary)";
-            this.verticalDeletebineryToolStripMenuItem.Click += new System.EventHandler(this.verticalDeletebineryToolStripMenuItem_Click);
-            // 
             // recomendLabel
             // 
             this.recomendLabel.AutoSize = true;
@@ -553,7 +553,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 363);
+            this.ClientSize = new System.Drawing.Size(340, 363);
             this.Controls.Add(this.recomendLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Boundary);

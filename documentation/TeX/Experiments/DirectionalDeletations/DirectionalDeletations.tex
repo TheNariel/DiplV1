@@ -1,0 +1,112 @@
+\subsubsection{Description}
+This example shows the ability to use Cellular neural networks to delete lines in specific directions. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+\subsubsection{Setup}
+
+\textbf{Input:} Binary picture.\\
+\textbf{Boundary conditions:} Fixed.\\
+\textbf{Initial output:} Unimportant (all zeros)
+
+\begin{minipage}{1\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ -1 & 1 & -1 \\
+ 0 & 0 & 0
+\end{bmatrix}
+Z = -2
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for horizontal deletion}
+\end{minipage}
+
+\begin{minipage}{1\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ 0 & -1 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & -1 & 0
+\end{bmatrix}
+Z = -2
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for vertical deletion}
+\end{minipage}
+\begin{minipage}{1\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ -1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & -1
+\end{bmatrix}
+Z = -2 
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for top left diagonal deletion}
+\end{minipage}
+\begin{minipage}{1\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ 0 & 0 & -1 \\
+ 0 & 1 & 0 \\
+ -1 & 0 & 0
+\end{bmatrix}
+Z = -2
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for top right diagonal deletion}
+\end{minipage}
+\subsubsection{Results}
+This functionality works by deleting pixel if there is any other pixel right next to it in chosen direction. Bellow you can see the input used for this experiment and the standard outputs for the several directions mention above.
+
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/DirectionalDeletations/fig/Input.png} 
+	\captionof{figure}{Input}
+\end{minipage}
+
+
+
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/DirectionalDeletations/fig/H.png}
+	\captionof{figure}{Horizontal deletion}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/DirectionalDeletations/fig/V.png}
+	\captionof{figure}{Vertical deletion}
+\end{minipage}\\.\\
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/DirectionalDeletations/fig/RL.png}
+	\captionof{figure}{Top right diagonal deletion}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/DirectionalDeletations/fig/LR.png}
+	\captionof{figure}{Top left diagonal deletion}
+\end{minipage}

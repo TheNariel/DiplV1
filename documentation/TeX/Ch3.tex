@@ -1,22 +1,23 @@
-\subsection{About}
-This chapter will deal with examples of experiments plausible with this work. 
-Each of following reports contains description, parametrs and results of given experinent.
+This chapter will deal with the examples of experiments plausible with this work. 
+Each of the following reports contains description, parameters and results of a given experiment.
+\subsection{Common properties.}
+Following experiments are using several common properties in setup, in order to keep the reports clear all go over them here.\\
+\textbf{Input:} inputs are general gonna be ether gray-scale pictures or binary ones with the values -1/1.\\
+\textbf{Boundary conditions:} Boundary conditions defines the networks behavior on the edges of the picture. Two of them are used, Fixed where the outline of the picture is "surrounded" by fixed value, or Flux where the edge pixels are copied outwards. \\
+\textbf{Initial output:} this setting states the initial values of output matrix, commonly its not an important since the calculations are not working with it. but i some experiments its set to some picture or other specific value.  \\
+
 \newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
+\subsection{Edge detection in gray-scale picture.}
+\input Experiments/EdgeDetectionGS/EdgeDetectionGS.tex
+
 \newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
+\subsection{Directional deletion.}
+\input Experiments/DirectionalDeletations/DirectionalDeletations.tex
+
 \newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
-\newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
-\newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
-\newpage
-\subsection{Template}
-\input Experiments/Template/Template.tex
-\newpage
+\subsection{Average.}
+\input Experiments/Average/Average.tex
+
+%%\newpage
+%%\subsection{Template}
+%%\input Experiments/Template/Template.tex
