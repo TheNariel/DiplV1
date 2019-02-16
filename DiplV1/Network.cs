@@ -129,9 +129,9 @@ namespace DiplV1
                 for (int y = 0; y <= height - 1; y++)
                 {
                     Output[y, x] = coutOutput(newState(x, y));
-                   Debug.Write(Output[y, x] + "|");
+                 //  Debug.Write(Output[y, x] + "|");
                 }
-                Debug.WriteLine(" ");
+              //  Debug.WriteLine(" ");
             }
             return Output;
         }
