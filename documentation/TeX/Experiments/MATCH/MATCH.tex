@@ -1,0 +1,41 @@
+\subsubsection{Description}
+This example shows the ability to use Cellular neural networks to find patterns in picture, this example shows a search for 3x3  pattern designated by B matrix. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+\\ Patter is set up by B matrix by the positions of -1/0/1, where -1 represents white, 1 black and 0 is for non specific color. 
+\subsubsection{Setup}
+
+\textbf{Input:} Unimportant (all zeros)\\
+\textbf{Boundary conditions:} Fixed.\\
+\textbf{Initial output:} Grey-scale picture
+
+\begin{minipage}{0.9\linewidth}
+\begin{equation}
+A =
+\begin{bmatrix}
+ 0 &  0 &  0 \\
+  0 &  1 &  0 \\
+  0 &  0 &  0
+\end{bmatrix}
+B =
+\begin{bmatrix}
+ 1 & -1 & 1 \\
+ 0 & 1 & 0 \\
+ 1 & -1 & 1
+\end{bmatrix}
+Z = -6.5
+\end{equation}
+\captionof{figure}{Chosen values of A,B and Z for this experiment}
+\end{minipage}
+
+\subsubsection{Results}
+
+
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/MATCH/fig/Input.png} 
+	\captionof{figure}{Input}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./Experiments/MATCH/fig/Output.png}
+	\captionof{figure}{Output}
+\end{minipage}

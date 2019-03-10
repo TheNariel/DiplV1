@@ -1,5 +1,5 @@
 \subsubsection{Description}
-This example shows the ability to use Cellular neural networks to produce a binary representation of grey-scale picture base on the average of the pixels. It uses a grey-scale picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+This example shows the ability to use Cellular neural networks to make black objects bigger (white smaller) on a binary picture. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
 \subsubsection{Setup}
 
 \textbf{Input:} Unimportant (all zeros)\\
@@ -10,9 +10,9 @@ This example shows the ability to use Cellular neural networks to produce a bina
 \begin{equation}
 A =
 \begin{bmatrix}
- 0 & 1 & 0 \\
- 1 & 2 & 1 \\
- 0 & 1 & 0
+ 0.25 &  0.25 &  0.25 \\
+  0.25 &  3 &  0.25 \\
+  0.25 &  0.25 &  0.25
 \end{bmatrix}
 B =
 \begin{bmatrix}
@@ -20,7 +20,7 @@ B =
  0 & 0 & 0 \\
  0 & 0 & 0
 \end{bmatrix}
-Z = 0
+Z = 3.75
 \end{equation}
 \captionof{figure}{Chosen values of A,B and Z for this experiment}
 \end{minipage}
@@ -30,11 +30,11 @@ Z = 0
 
 \begin{minipage}{0.5\linewidth}
 	\centering
-	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Input.png} 
+	\includegraphics[width=0.9\linewidth]{./Experiments/BProp/fig/Input.png} 
 	\captionof{figure}{Input}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 	\centering
-	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Output.png}
+	\includegraphics[width=0.9\linewidth]{./Experiments/BProp/fig/Output.png}
 	\captionof{figure}{Output}
 \end{minipage}
