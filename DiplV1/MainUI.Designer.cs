@@ -1,6 +1,6 @@
 ﻿namespace DiplV1
 {
-    partial class Form1
+    partial class MainUI
     {
         /// <summary>
         /// Required designer variable.
@@ -65,7 +65,6 @@
             this.rBInput = new System.Windows.Forms.RadioButton();
             this.rBArb = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.fileName = new System.Windows.Forms.Label();
             this.Initial = new System.Windows.Forms.GroupBox();
             this.arbState = new System.Windows.Forms.TextBox();
             this.Matrixes = new System.Windows.Forms.GroupBox();
@@ -77,6 +76,7 @@
             this.rBGreyScale = new System.Windows.Forms.RadioButton();
             this.recomendLabel = new System.Windows.Forms.Label();
             this.GeneText = new System.Windows.Forms.TextBox();
+            this.OpenList = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.Initial.SuspendLayout();
             this.Matrixes.SuspendLayout();
@@ -125,14 +125,14 @@
             this.edgeDetectionForGeyscaleImageToolStripMenuItem.Name = "edgeDetectionForGeyscaleImageToolStripMenuItem";
             this.edgeDetectionForGeyscaleImageToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.edgeDetectionForGeyscaleImageToolStripMenuItem.Text = "Edge detection (greyscale)";
-            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Click += new System.EventHandler(this.edgeDetectionForGeyscaleImageToolStripMenuItem_Click);
+            this.edgeDetectionForGeyscaleImageToolStripMenuItem.Click += new System.EventHandler(this.EdgeDetectionForGeyscaleImageToolStripMenuItem_Click);
             // 
             // verticalDeletebineryToolStripMenuItem
             // 
             this.verticalDeletebineryToolStripMenuItem.Name = "verticalDeletebineryToolStripMenuItem";
             this.verticalDeletebineryToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.verticalDeletebineryToolStripMenuItem.Text = "Vertical delete (binary)";
-            this.verticalDeletebineryToolStripMenuItem.Click += new System.EventHandler(this.verticalDeletebineryToolStripMenuItem_Click);
+            this.verticalDeletebineryToolStripMenuItem.Click += new System.EventHandler(this.VerticalDeletebineryToolStripMenuItem_Click);
             // 
             // B10
             // 
@@ -316,7 +316,7 @@
             // Start
             // 
             this.Start.Enabled = false;
-            this.Start.Location = new System.Drawing.Point(279, 248);
+            this.Start.Location = new System.Drawing.Point(137, 289);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(50, 23);
             this.Start.TabIndex = 25;
@@ -407,28 +407,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 255);
+            this.label4.Location = new System.Drawing.Point(9, 277);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 28;
             this.label4.Text = "Curent file:";
-            // 
-            // fileName
-            // 
-            this.fileName.AutoSize = true;
-            this.fileName.Location = new System.Drawing.Point(78, 255);
-            this.fileName.MaximumSize = new System.Drawing.Size(100, 0);
-            this.fileName.Name = "fileName";
-            this.fileName.Size = new System.Drawing.Size(37, 13);
-            this.fileName.TabIndex = 29;
-            this.fileName.Text = "No file";
             // 
             // Initial
             // 
             this.Initial.Controls.Add(this.arbState);
             this.Initial.Controls.Add(this.rBArb);
             this.Initial.Controls.Add(this.rBInput);
-            this.Initial.Location = new System.Drawing.Point(12, 66);
+            this.Initial.Location = new System.Drawing.Point(208, 233);
             this.Initial.Name = "Initial";
             this.Initial.Size = new System.Drawing.Size(136, 64);
             this.Initial.TabIndex = 31;
@@ -479,7 +469,7 @@
             this.Inpt.Controls.Add(this.radioButton12);
             this.Inpt.Controls.Add(this.radioButton11);
             this.Inpt.Controls.Add(this.radioButton10);
-            this.Inpt.Location = new System.Drawing.Point(12, 139);
+            this.Inpt.Location = new System.Drawing.Point(208, 303);
             this.Inpt.Name = "Inpt";
             this.Inpt.Size = new System.Drawing.Size(136, 103);
             this.Inpt.TabIndex = 33;
@@ -491,7 +481,7 @@
             this.Boundary.Controls.Add(this.arbBound);
             this.Boundary.Controls.Add(this.rBFlux);
             this.Boundary.Controls.Add(this.rBArbBound);
-            this.Boundary.Location = new System.Drawing.Point(193, 66);
+            this.Boundary.Location = new System.Drawing.Point(208, 66);
             this.Boundary.Name = "Boundary";
             this.Boundary.Size = new System.Drawing.Size(136, 91);
             this.Boundary.TabIndex = 33;
@@ -511,7 +501,7 @@
             // 
             this.groupBox1.Controls.Add(this.rBBinOut);
             this.groupBox1.Controls.Add(this.rBGreyScale);
-            this.groupBox1.Location = new System.Drawing.Point(193, 163);
+            this.groupBox1.Location = new System.Drawing.Point(208, 163);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(136, 64);
             this.groupBox1.TabIndex = 32;
@@ -560,11 +550,21 @@
             this.GeneText.TabStop = false;
             this.GeneText.Text = "-0.5;0;0;0;0;2;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1";
             // 
-            // Form1
+            // OpenList
+            // 
+            this.OpenList.FormattingEnabled = true;
+            this.OpenList.Location = new System.Drawing.Point(12, 66);
+            this.OpenList.Name = "OpenList";
+            this.OpenList.Size = new System.Drawing.Size(190, 173);
+            this.OpenList.TabIndex = 37;
+            this.OpenList.SelectedValueChanged += new System.EventHandler(this.OpenList_SelectedValueChanged);
+            // 
+            // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 311);
+            this.ClientSize = new System.Drawing.Size(356, 521);
+            this.Controls.Add(this.OpenList);
             this.Controls.Add(this.GeneText);
             this.Controls.Add(this.recomendLabel);
             this.Controls.Add(this.groupBox1);
@@ -572,16 +572,15 @@
             this.Controls.Add(this.Inpt);
             this.Controls.Add(this.Matrixes);
             this.Controls.Add(this.Initial);
-            this.Controls.Add(this.fileName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainUI";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Form1";
+            this.Text = "CNN Sim";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.Initial.ResumeLayout(false);
@@ -627,7 +626,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label fileName;
         private System.Windows.Forms.RadioButton rBArbBound;
         private System.Windows.Forms.RadioButton rBFlux;
         private System.Windows.Forms.RadioButton radioButton10;
@@ -649,6 +647,7 @@
         private System.Windows.Forms.ToolStripMenuItem verticalDeletebineryToolStripMenuItem;
         private System.Windows.Forms.Label recomendLabel;
         private System.Windows.Forms.TextBox GeneText;
+        private System.Windows.Forms.ListBox OpenList;
     }
 }
 

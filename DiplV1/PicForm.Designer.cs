@@ -87,6 +87,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PicForm";
             this.Text = "PicForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PicForm_FormClosing);
             this.Load += new System.EventHandler(this.PicForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);

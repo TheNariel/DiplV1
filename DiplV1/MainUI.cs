@@ -14,20 +14,19 @@ using System.Windows.Forms;
 
 namespace DiplV1
 {
-    public partial class Form1 : Form
-    {
-        int t;
-        Bitmap sourceImage = null;
-        Bitmap resultImage = null;
-        String activeFileName;
+    public partial class MainUI : Form
+    {    
         double Z;
-        double[,] B, A;// = new double[3, 3];
-        double[,] O;
-        public double[,] Input;
-        int widht = 0, height = 0;
-        public Form1()
+
+        double[,] B, A, O, Input;
+
+        List<PicForm> Open = new List<PicForm>();
+
+        public MainUI()
         {
             InitializeComponent();
+            OpenList.DisplayMember = "Text";
+            OpenList.ClearSelected();
         }
 
         private void openItem_Click(object sender, EventArgs e)
@@ -37,32 +36,35 @@ namespace DiplV1
             if (file.ShowDialog() == DialogResult.OK)
             {
                 path = file.FileName;
-                sourceImage = (Bitmap)Image.FromFile(path, true);
-                widht = sourceImage.Width;
-                height = sourceImage.Height;
-                resultImage = new Bitmap(widht, height);
-                activeFileName = "..." + file.FileName.Substring(file.FileName.LastIndexOf("\\"));
-                fileName.Text = activeFileName;
-                createNewPicForm(sourceImage, "Source Image: " + activeFileName);
-
-                Input = new double[height, widht];
-                for (int x = 0; x < widht; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
-                    }
-                }
-
-                Start.Enabled = true;
+                Bitmap sourceImage = (Bitmap)Image.FromFile(path, true);
+                String activeFileName = file.FileName.Substring(file.FileName.LastIndexOf("\\"))+DateTime.Now.TimeOfDay; 
+                CreateNewPicForm(sourceImage, activeFileName);
 
             }
         }
+
+        private void selectInput(Bitmap sourceImage)
+        {
+            int widht = sourceImage.Width;
+            int height = sourceImage.Height;
+
+            Input = new double[height, widht];
+            for (int x = 0; x < widht; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
+                }
+            }
+            Start.Enabled = true;
+        }
+
         private double getInput(int color)
         {
             double ret = (double)color / 128;
             return (ret - 1) * (-1);
         }
+
         private int getOutput(double ret)
         {
             int color;
@@ -84,11 +86,18 @@ namespace DiplV1
 
             return color;
         }
+
         private void Start_Click(object sender, EventArgs e)
         {
             if (FillParametrs())
             {
-                t = 0;
+                
+                Bitmap sourceImage = ((PicForm)OpenList.SelectedItem).sourceImage;
+                int widht = sourceImage.Width;
+                int height = sourceImage.Height;
+
+                selectInput(sourceImage);
+
                 Network Net = new Network(widht, height);
 
                 Net.Z = Z;
@@ -104,7 +113,7 @@ namespace DiplV1
                 O = Net.ProcessNetwork();
 
 
-                drawIO();
+                DrawIO(widht, height);
             }
         }
 
@@ -136,7 +145,6 @@ namespace DiplV1
             return true;
         }
 
-
         private void rBInput_CheckedChanged(object sender, EventArgs e)
         {
             arbState.Enabled = false;
@@ -157,14 +165,10 @@ namespace DiplV1
             arbBound.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void drawIO()
+        private void DrawIO(int widht, int height)
         {
             Bitmap BitO = new Bitmap(widht, height);
+
             int OC = 0;
             for (int x = 0; x < widht; x++)
             {
@@ -177,20 +181,31 @@ namespace DiplV1
             }
 
 
-            createNewPicForm(BitO, t + " :Result for: " + activeFileName);
+            CreateNewPicForm(BitO,"Result for: " + ((PicForm)OpenList.SelectedItem).Text);
 
         }
 
-        private void createNewPicForm(Bitmap image, String name)
+        public void Imageclosed(PicForm closed)
         {
-            PicForm picForm = new PicForm(image.Clone());
+           OpenList.Items.Remove(closed);
+        }
+
+        private void CreateNewPicForm(Bitmap image, String name)
+        {
+            PicForm picForm = new PicForm(image.Clone(),this);
             picForm.Text = name;
             picForm.Show();
+
+            Open.Add(picForm);
+            OpenList.Items.Add(picForm);
         }
 
-
-
-        private void edgeDetectionForGeyscaleImageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenList_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Start.Enabled = true;
+        }
+     
+        private void EdgeDetectionForGeyscaleImageToolStripMenuItem_Click(object sender, EventArgs e)
         {          
             GeneText.Text = "-0.5;0;0;0;0;2;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1";
 
@@ -202,7 +217,7 @@ namespace DiplV1
             recomendLabel.Text = "Recomended image for example is \n \"avergra2.bmp\" from PicLib";
         }
 
-        private void verticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VerticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneText.Text = "-2;0;0;0;0;1;0;0;0;0;0;-1;0;0;1;0;0;-1;0";
 

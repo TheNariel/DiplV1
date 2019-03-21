@@ -14,16 +14,18 @@ namespace DiplV1
     public partial class PicForm : Form
     {
         int drawWidht = 500, drawHeight = 500;
-        Bitmap sourceImage = null;
-
-        public PicForm(Bitmap image)
+        public Bitmap sourceImage = null;
+        Form UI;
+        public PicForm(Bitmap image,Form ui)
         {
+            UI = ui;
             sourceImage = image;
             InitializeComponent();
         }
 
-        public PicForm(object v)
+        public PicForm(object v, Form ui)
         {
+            UI = ui;
             sourceImage = (Bitmap)v;
             InitializeComponent();
         }
@@ -53,6 +55,11 @@ namespace DiplV1
             saveFileDialog1.Filter =
                 "Bmp files (*.bmp)|*.bmp|All files (*.*)|*.*";
             saveFileDialog1.ShowDialog();
+        }
+
+        private void PicForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ((MainUI)UI).Imageclosed(this);
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
