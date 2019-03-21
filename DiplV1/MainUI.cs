@@ -1,15 +1,6 @@
-﻿using AForge.Imaging.Filters;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DiplV1
@@ -18,15 +9,15 @@ namespace DiplV1
     {    
         double Z;
 
-        double[,] B, A, O, Input;
-
-        List<PicForm> Open = new List<PicForm>();
+        double[,] B, A, Output, Input;
 
         public MainUI()
         {
             InitializeComponent();
             OpenList.DisplayMember = "Text";
             OpenList.ClearSelected();
+            OpenList2.DisplayMember = "Text";
+            OpenList2.ClearSelected();
         }
 
         private void openItem_Click(object sender, EventArgs e)
@@ -110,7 +101,7 @@ namespace DiplV1
                 Net.inicializeNetwork(rBInput.Checked, arbState.Text);
 
 
-                O = Net.ProcessNetwork();
+                Output = Net.ProcessNetwork();
 
 
                 DrawIO(widht, height);
@@ -145,7 +136,7 @@ namespace DiplV1
             return true;
         }
 
-        private void rBInput_CheckedChanged(object sender, EventArgs e)
+      /*  private void rBInput_CheckedChanged(object sender, EventArgs e)
         {
             arbState.Enabled = false;
         }
@@ -163,7 +154,7 @@ namespace DiplV1
         private void rBArbBound_CheckedChanged(object sender, EventArgs e)
         {
             arbBound.Enabled = true;
-        }
+        }*/
 
         private void DrawIO(int widht, int height)
         {
@@ -174,7 +165,7 @@ namespace DiplV1
             {
                 for (int y = 0; y < height; y++)
                 {
-                    OC = getOutput(O[y, x]);
+                    OC = getOutput(Output[y, x]);
                     BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
 
                 }
@@ -188,18 +179,21 @@ namespace DiplV1
         public void Imageclosed(PicForm closed)
         {
            OpenList.Items.Remove(closed);
+           OpenList2.Items.Remove(closed);
         }
 
         private void CreateNewPicForm(Bitmap image, String name)
         {
-            PicForm picForm = new PicForm(image.Clone(),this);
-            picForm.Text = name;
+            PicForm picForm = new PicForm(image.Clone(), this)
+            {
+                Text = name
+            };
             picForm.Show();
 
-            Open.Add(picForm);
             OpenList.Items.Add(picForm);
+            OpenList2.Items.Add(picForm);
         }
-
+         
         private void OpenList_SelectedValueChanged(object sender, EventArgs e)
         {
             Start.Enabled = true;

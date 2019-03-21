@@ -77,6 +77,10 @@
             this.recomendLabel = new System.Windows.Forms.Label();
             this.GeneText = new System.Windows.Forms.TextBox();
             this.OpenList = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.OpenList2 = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.Initial.SuspendLayout();
             this.Matrixes.SuspendLayout();
@@ -92,7 +96,7 @@
             this.examplesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(356, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(382, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -316,7 +320,7 @@
             // Start
             // 
             this.Start.Enabled = false;
-            this.Start.Location = new System.Drawing.Point(137, 289);
+            this.Start.Location = new System.Drawing.Point(43, 371);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(50, 23);
             this.Start.TabIndex = 25;
@@ -333,7 +337,7 @@
             this.rBArbBound.TabIndex = 1;
             this.rBArbBound.Text = "Arbitrary";
             this.rBArbBound.UseVisualStyleBackColor = true;
-            this.rBArbBound.CheckedChanged += new System.EventHandler(this.rBArbBound_CheckedChanged);
+           // this.rBArbBound.CheckedChanged += new System.EventHandler(this.rBArbBound_CheckedChanged);
             // 
             // rBFlux
             // 
@@ -346,7 +350,7 @@
             this.rBFlux.TabStop = true;
             this.rBFlux.Text = "Flux";
             this.rBFlux.UseVisualStyleBackColor = true;
-            this.rBFlux.CheckedChanged += new System.EventHandler(this.rBFlux_CheckedChanged);
+           // this.rBFlux.CheckedChanged += new System.EventHandler(this.rBFlux_CheckedChanged);
             // 
             // radioButton10
             // 
@@ -385,11 +389,11 @@
             this.rBInput.AutoSize = true;
             this.rBInput.Location = new System.Drawing.Point(6, 42);
             this.rBInput.Name = "rBInput";
-            this.rBInput.Size = new System.Drawing.Size(49, 17);
+            this.rBInput.Size = new System.Drawing.Size(58, 17);
             this.rBInput.TabIndex = 7;
-            this.rBInput.Text = "Input";
+            this.rBInput.Text = "Input 1";
             this.rBInput.UseVisualStyleBackColor = true;
-            this.rBInput.CheckedChanged += new System.EventHandler(this.rBInput_CheckedChanged);
+            //this.rBInput.CheckedChanged += new System.EventHandler(this.rBInput_CheckedChanged);
             // 
             // rBArb
             // 
@@ -402,25 +406,26 @@
             this.rBArb.TabStop = true;
             this.rBArb.Text = "Arbitrary";
             this.rBArb.UseVisualStyleBackColor = true;
-            this.rBArb.CheckedChanged += new System.EventHandler(this.rBArb_CheckedChanged);
+           // this.rBArb.CheckedChanged += new System.EventHandler(this.rBArb_CheckedChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 277);
+            this.label4.Location = new System.Drawing.Point(12, 69);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 28;
-            this.label4.Text = "Curent file:";
+            this.label4.Text = "Input 1:";
             // 
             // Initial
             // 
+            this.Initial.Controls.Add(this.radioButton1);
             this.Initial.Controls.Add(this.arbState);
             this.Initial.Controls.Add(this.rBArb);
             this.Initial.Controls.Add(this.rBInput);
-            this.Initial.Location = new System.Drawing.Point(208, 233);
+            this.Initial.Location = new System.Drawing.Point(193, 197);
             this.Initial.Name = "Initial";
-            this.Initial.Size = new System.Drawing.Size(136, 64);
+            this.Initial.Size = new System.Drawing.Size(136, 98);
             this.Initial.TabIndex = 31;
             this.Initial.TabStop = false;
             this.Initial.Text = "Initial state.";
@@ -457,7 +462,7 @@
             this.Matrixes.Controls.Add(this.Z19);
             this.Matrixes.Controls.Add(this.B13);
             this.Matrixes.Controls.Add(this.label1);
-            this.Matrixes.Location = new System.Drawing.Point(613, 46);
+            this.Matrixes.Location = new System.Drawing.Point(403, 112);
             this.Matrixes.Name = "Matrixes";
             this.Matrixes.Size = new System.Drawing.Size(175, 261);
             this.Matrixes.TabIndex = 32;
@@ -469,9 +474,9 @@
             this.Inpt.Controls.Add(this.radioButton12);
             this.Inpt.Controls.Add(this.radioButton11);
             this.Inpt.Controls.Add(this.radioButton10);
-            this.Inpt.Location = new System.Drawing.Point(208, 303);
+            this.Inpt.Location = new System.Drawing.Point(605, 228);
             this.Inpt.Name = "Inpt";
-            this.Inpt.Size = new System.Drawing.Size(136, 103);
+            this.Inpt.Size = new System.Drawing.Size(136, 98);
             this.Inpt.TabIndex = 33;
             this.Inpt.TabStop = false;
             this.Inpt.Text = "Input";
@@ -481,7 +486,7 @@
             this.Boundary.Controls.Add(this.arbBound);
             this.Boundary.Controls.Add(this.rBFlux);
             this.Boundary.Controls.Add(this.rBArbBound);
-            this.Boundary.Location = new System.Drawing.Point(208, 66);
+            this.Boundary.Location = new System.Drawing.Point(12, 204);
             this.Boundary.Name = "Boundary";
             this.Boundary.Size = new System.Drawing.Size(136, 91);
             this.Boundary.TabIndex = 33;
@@ -501,7 +506,7 @@
             // 
             this.groupBox1.Controls.Add(this.rBBinOut);
             this.groupBox1.Controls.Add(this.rBGreyScale);
-            this.groupBox1.Location = new System.Drawing.Point(208, 163);
+            this.groupBox1.Location = new System.Drawing.Point(12, 301);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(136, 64);
             this.groupBox1.TabIndex = 32;
@@ -543,7 +548,7 @@
             // GeneText
             // 
             this.GeneText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GeneText.Location = new System.Drawing.Point(12, 27);
+            this.GeneText.Location = new System.Drawing.Point(12, 40);
             this.GeneText.Name = "GeneText";
             this.GeneText.Size = new System.Drawing.Size(317, 26);
             this.GeneText.TabIndex = 25;
@@ -553,17 +558,57 @@
             // OpenList
             // 
             this.OpenList.FormattingEnabled = true;
-            this.OpenList.Location = new System.Drawing.Point(12, 66);
+            this.OpenList.Location = new System.Drawing.Point(12, 85);
             this.OpenList.Name = "OpenList";
-            this.OpenList.Size = new System.Drawing.Size(190, 173);
+            this.OpenList.Size = new System.Drawing.Size(317, 43);
             this.OpenList.TabIndex = 37;
             this.OpenList.SelectedValueChanged += new System.EventHandler(this.OpenList_SelectedValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "Gene:";
+            // 
+            // OpenList2
+            // 
+            this.OpenList2.FormattingEnabled = true;
+            this.OpenList2.Location = new System.Drawing.Point(12, 148);
+            this.OpenList2.Name = "OpenList2";
+            this.OpenList2.Size = new System.Drawing.Size(317, 43);
+            this.OpenList2.TabIndex = 40;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 132);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Input 2:";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 65);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(58, 17);
+            this.radioButton1.TabIndex = 27;
+            this.radioButton1.Text = "Input 2";
+            this.radioButton1.UseVisualStyleBackColor = true;
+          //  this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 521);
+            this.ClientSize = new System.Drawing.Size(382, 401);
+            this.Controls.Add(this.OpenList2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.OpenList);
             this.Controls.Add(this.GeneText);
             this.Controls.Add(this.recomendLabel);
@@ -648,6 +693,10 @@
         private System.Windows.Forms.Label recomendLabel;
         private System.Windows.Forms.TextBox GeneText;
         private System.Windows.Forms.ListBox OpenList;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox OpenList2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 
