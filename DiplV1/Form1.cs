@@ -21,7 +21,7 @@ namespace DiplV1
         Bitmap resultImage = null;
         String activeFileName;
         double Z;
-        double[,] B = new double[3, 3], A = new double[3, 3];
+        double[,] B, A;// = new double[3, 3];
         double[,] O;
         public double[,] Input;
         int widht = 0, height = 0;
@@ -86,52 +86,54 @@ namespace DiplV1
         }
         private void Start_Click(object sender, EventArgs e)
         {
-            FillParametrs();
-            t = 0;
-            Network Net = new Network(widht, height);
+            if (FillParametrs())
+            {
+                t = 0;
+                Network Net = new Network(widht, height);
 
-            Net.Z = Z;
-            Net.B = B;
-            Net.A = A;
-            Net.I = Input;
-            Net.BounVaule = Double.Parse(arbBound.Text);
-            Net.FluxBoundry = rBFlux.Checked;
-            Net.Output = new double[height, widht];
-            Net.inicializeNetwork(rBInput.Checked, arbState.Text);
-
-
-            O = Net.ProcessNetwork();
+                Net.Z = Z;
+                Net.B = B;
+                Net.A = A;
+                Net.I = Input;
+                Net.BounVaule = Double.Parse(arbBound.Text);
+                Net.FluxBoundry = rBFlux.Checked;
+                Net.Output = new double[height, widht];
+                Net.inicializeNetwork(rBInput.Checked, arbState.Text);
 
 
-            drawIO();
+                O = Net.ProcessNetwork();
 
+
+                drawIO();
+            }
         }
 
-        private void FillParametrs()
+        private Boolean FillParametrs()
         {
-            Z = Double.Parse(Z19.Text);
+            String gene = GeneText.Text;
+            String[] G = gene.Split(';');
 
-            B[0, 0] = Double.Parse(B10.Text);
-            B[0, 1] = Double.Parse(B11.Text);
-            B[0, 2] = Double.Parse(B12.Text);
-            B[1, 0] = Double.Parse(B13.Text);
-            B[1, 1] = Double.Parse(B14.Text);
-            B[1, 2] = Double.Parse(B15.Text);
-            B[2, 0] = Double.Parse(B16.Text);
-            B[2, 1] = Double.Parse(B17.Text);
-            B[2, 2] = Double.Parse(B18.Text);
+            if (G.Length % 2 == 0) {
+                recomendLabel.Text = "Gene is wrong.";
+                return false;
+            }
 
-            A[0, 0] = Double.Parse(A01.Text);
-            A[0, 1] = Double.Parse(A02.Text);
-            A[0, 2] = Double.Parse(A03.Text);
-            A[1, 0] = Double.Parse(A04.Text);
-            A[1, 1] = Double.Parse(A05.Text);
-            A[1, 2] = Double.Parse(A06.Text);
-            A[2, 0] = Double.Parse(A07.Text);
-            A[2, 1] = Double.Parse(A08.Text);
-            A[2, 2] = Double.Parse(A09.Text);
+            Z = Double.Parse(G[0]);
+            int m = Convert.ToInt32(Math.Sqrt((G.Length - 1)/2));
+            A = new double[m, m];
+            B = new double[m, m];
 
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    int x =  j+(i * m) + 1;
+                    A[i, j] = Double.Parse(G[x]);
+                    B[i, j] = Double.Parse(G[x+(m*m)]);
+                }
+            }
 
+            return true;
         }
 
 
@@ -188,30 +190,9 @@ namespace DiplV1
 
 
 
-
         private void edgeDetectionForGeyscaleImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            A01.Text = "0";
-            A02.Text = "0";
-            A03.Text = "0";
-            A04.Text = "0";
-            A05.Text = "2";
-            A06.Text = "0";
-            A07.Text = "0";
-            A08.Text = "0";
-            A09.Text = "0";
-
-            B10.Text = "-1";
-            B11.Text = "-1";
-            B12.Text = "-1";
-            B13.Text = "-1";
-            B14.Text = "8";
-            B15.Text = "-1";
-            B16.Text = "-1";
-            B17.Text = "-1";
-            B18.Text = "-1";
-
-            Z19.Text = "-0.5";
+        {          
+            GeneText.Text = "-0.5;0;0;0;0;2;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1";
 
             rBBinOut.Checked = true;
             rBArb.Checked = true;
@@ -223,27 +204,7 @@ namespace DiplV1
 
         private void verticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            A01.Text = "0";
-            A02.Text = "0";
-            A03.Text = "0";
-            A04.Text = "0";
-            A05.Text = "1";
-            A06.Text = "0";
-            A07.Text = "0";
-            A08.Text = "0";
-            A09.Text = "0";
-
-            B10.Text = "0";
-            B11.Text = "-1";
-            B12.Text = "0";
-            B13.Text = "0";
-            B14.Text = "1";
-            B15.Text = "0";
-            B16.Text = "0";
-            B17.Text = "-1";
-            B18.Text = "0";
-
-            Z19.Text = "-2";
+            GeneText.Text = "-2;0;0;0;0;1;0;0;0;0;0;-1;0;0;1;0;0;-1;0";
 
             rBGreyScale.Checked = true;
             rBArb.Checked = true;

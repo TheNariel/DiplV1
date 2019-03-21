@@ -76,6 +76,7 @@
             this.rBBinOut = new System.Windows.Forms.RadioButton();
             this.rBGreyScale = new System.Windows.Forms.RadioButton();
             this.recomendLabel = new System.Windows.Forms.Label();
+            this.GeneText = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.Initial.SuspendLayout();
             this.Matrixes.SuspendLayout();
@@ -91,7 +92,7 @@
             this.examplesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(340, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(356, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -315,7 +316,7 @@
             // Start
             // 
             this.Start.Enabled = false;
-            this.Start.Location = new System.Drawing.Point(279, 336);
+            this.Start.Location = new System.Drawing.Point(279, 248);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(50, 23);
             this.Start.TabIndex = 25;
@@ -406,7 +407,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(154, 291);
+            this.label4.Location = new System.Drawing.Point(15, 255);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 28;
@@ -415,7 +416,7 @@
             // fileName
             // 
             this.fileName.AutoSize = true;
-            this.fileName.Location = new System.Drawing.Point(217, 291);
+            this.fileName.Location = new System.Drawing.Point(78, 255);
             this.fileName.MaximumSize = new System.Drawing.Size(100, 0);
             this.fileName.Name = "fileName";
             this.fileName.Size = new System.Drawing.Size(37, 13);
@@ -427,7 +428,7 @@
             this.Initial.Controls.Add(this.arbState);
             this.Initial.Controls.Add(this.rBArb);
             this.Initial.Controls.Add(this.rBInput);
-            this.Initial.Location = new System.Drawing.Point(193, 27);
+            this.Initial.Location = new System.Drawing.Point(12, 66);
             this.Initial.Name = "Initial";
             this.Initial.Size = new System.Drawing.Size(136, 64);
             this.Initial.TabIndex = 31;
@@ -466,7 +467,7 @@
             this.Matrixes.Controls.Add(this.Z19);
             this.Matrixes.Controls.Add(this.B13);
             this.Matrixes.Controls.Add(this.label1);
-            this.Matrixes.Location = new System.Drawing.Point(12, 27);
+            this.Matrixes.Location = new System.Drawing.Point(613, 46);
             this.Matrixes.Name = "Matrixes";
             this.Matrixes.Size = new System.Drawing.Size(175, 261);
             this.Matrixes.TabIndex = 32;
@@ -478,7 +479,7 @@
             this.Inpt.Controls.Add(this.radioButton12);
             this.Inpt.Controls.Add(this.radioButton11);
             this.Inpt.Controls.Add(this.radioButton10);
-            this.Inpt.Location = new System.Drawing.Point(193, 185);
+            this.Inpt.Location = new System.Drawing.Point(12, 139);
             this.Inpt.Name = "Inpt";
             this.Inpt.Size = new System.Drawing.Size(136, 103);
             this.Inpt.TabIndex = 33;
@@ -490,7 +491,7 @@
             this.Boundary.Controls.Add(this.arbBound);
             this.Boundary.Controls.Add(this.rBFlux);
             this.Boundary.Controls.Add(this.rBArbBound);
-            this.Boundary.Location = new System.Drawing.Point(193, 92);
+            this.Boundary.Location = new System.Drawing.Point(193, 66);
             this.Boundary.Name = "Boundary";
             this.Boundary.Size = new System.Drawing.Size(136, 91);
             this.Boundary.TabIndex = 33;
@@ -510,7 +511,7 @@
             // 
             this.groupBox1.Controls.Add(this.rBBinOut);
             this.groupBox1.Controls.Add(this.rBGreyScale);
-            this.groupBox1.Location = new System.Drawing.Point(12, 294);
+            this.groupBox1.Location = new System.Drawing.Point(193, 163);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(136, 64);
             this.groupBox1.TabIndex = 32;
@@ -549,11 +550,22 @@
             this.recomendLabel.TabIndex = 34;
             this.recomendLabel.Text = " ";
             // 
+            // GeneText
+            // 
+            this.GeneText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GeneText.Location = new System.Drawing.Point(12, 27);
+            this.GeneText.Name = "GeneText";
+            this.GeneText.Size = new System.Drawing.Size(317, 26);
+            this.GeneText.TabIndex = 25;
+            this.GeneText.TabStop = false;
+            this.GeneText.Text = "-0.5;0;0;0;0;2;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 363);
+            this.ClientSize = new System.Drawing.Size(356, 311);
+            this.Controls.Add(this.GeneText);
             this.Controls.Add(this.recomendLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Boundary);
@@ -636,6 +648,7 @@
         private System.Windows.Forms.ToolStripMenuItem edgeDetectionForGeyscaleImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verticalDeletebineryToolStripMenuItem;
         private System.Windows.Forms.Label recomendLabel;
+        private System.Windows.Forms.TextBox GeneText;
     }
 }
 

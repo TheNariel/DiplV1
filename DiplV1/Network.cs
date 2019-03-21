@@ -6,6 +6,7 @@ namespace DiplV1
 {
     class Network
     {
+        int m,negm;
         double z;
         double[,] netStatus;
         double[,] b, a, output;
@@ -124,6 +125,8 @@ namespace DiplV1
 
         public double[,] ProcessNetwork()
         {
+            m = ((A.Length/3)-1)/ 2;
+            negm = 0 - m;
             for (int x = 0; x <= widht - 1; x++)
             {
                 for (int y = 0; y <= height - 1; y++)
@@ -141,9 +144,9 @@ namespace DiplV1
             double ret = 0;
             double feedback = 0, feedforward = 0;
             int xx, yy;
-            for (int i = -1; i <= 1; i++)
+            for (int i = negm; i <= m; i++)
             {
-                for (int e = -1; e <= 1; e++)
+                for (int e = negm; e <= m; e++)
                 {
                     xx = x + e;
                     yy = y + i;
@@ -172,9 +175,9 @@ namespace DiplV1
                 }
 
             }
-            for (int i = -1; i <= 1; i++)
+            for (int i = negm; i <= m; i++)
             {
-                for (int e = -1; e <= 1; e++)
+                for (int e = negm; e <= m; e++)
                 {
                     xx = x + e;
                     yy = y + i;
