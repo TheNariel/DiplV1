@@ -6,10 +6,10 @@ using System.Windows.Forms;
 namespace DiplV1
 {
     public partial class MainUI : Form
-    {    
-        double Z;
+    {
+        private double Z;
 
-        double[,] B, A, Output, Input;
+        double[,] B, A;
 
         public MainUI()
         {
@@ -20,7 +20,7 @@ namespace DiplV1
             OpenList2.ClearSelected();
         }
 
-        private void openItem_Click(object sender, EventArgs e)
+        private void OpenItem_Click(object sender, EventArgs e)
         {
             string path;
             OpenFileDialog file = new OpenFileDialog();
@@ -28,98 +28,126 @@ namespace DiplV1
             {
                 path = file.FileName;
                 Bitmap sourceImage = (Bitmap)Image.FromFile(path, true);
-                String activeFileName = file.FileName.Substring(file.FileName.LastIndexOf("\\"))+DateTime.Now.TimeOfDay; 
+                String activeFileName = file.FileName.Substring(file.FileName.LastIndexOf("\\")) + DateTime.Now.TimeOfDay;
                 CreateNewPicForm(sourceImage, activeFileName);
-
+                file.Dispose();
+                file = null;
             }
         }
 
-        private void selectInput(Bitmap sourceImage)
+        private double[,] BitmapToArray(Bitmap sourceImage)
         {
             int widht = sourceImage.Width;
             int height = sourceImage.Height;
 
-            Input = new double[height, widht];
+            double[,] Input = new double[height, widht];
             for (int x = 0; x < widht; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    Input[y, x] = getInput(sourceImage.GetPixel(x, y).B);
+                    Input[y, x] = GetInput(sourceImage.GetPixel(x, y).B);
                 }
             }
             Start.Enabled = true;
+            return Input;
         }
 
-        private double getInput(int color)
+        private double GetInput(int color)
         {
             double ret = (double)color / 128;
             return (ret - 1) * (-1);
         }
 
-        private int getOutput(double ret)
+        private int GetOutput(double ret)
         {
-            int color;
-            if (rBGreyScale.Checked)
-            {
-                ret = ret * (-1);
-                color = (int)((ret + 1) * 128);
-                if (color > 255) color = 255;
-                if (color < 0) color = 0;
-            }
-            else
-            {
-                color = 0;
-                if (ret <= Z) color = 255;
-            }
+            int color = 0;
 
-
-
+            if (ret <= 0) color = 255;
 
             return color;
         }
 
         private void Start_Click(object sender, EventArgs e)
         {
-            if (FillParametrs())
+            if (GetGene())
             {
-                
-                Bitmap sourceImage = ((PicForm)OpenList.SelectedItem).sourceImage;
-                int widht = sourceImage.Width;
-                int height = sourceImage.Height;
+                Bitmap sourceImage1 = null;
+                Bitmap sourceImage2 = null;
 
-                selectInput(sourceImage);
+                SetInitAndInput(out string name, ref sourceImage1, ref sourceImage2, out int widht, out int height, out double[,] Input, out double[,] Init);
 
                 Network Net = new Network(widht, height);
 
                 Net.Z = Z;
                 Net.B = B;
                 Net.A = A;
-                Net.I = Input;
-                Net.BounVaule = Double.Parse(arbBound.Text);
-                Net.FluxBoundry = rBFlux.Checked;
-                Net.Output = new double[height, widht];
-                Net.inicializeNetwork(rBInput.Checked, arbState.Text);
+
+                Net.Input = Input;
+                Net.Init = Init;
 
 
-                Output = Net.ProcessNetwork();
+
+                double[,] Output = Net.Start(int.Parse(nOfIteration.Text), 1);
 
 
-                DrawIO(widht, height);
+                DrawIO(Output, name);
             }
         }
 
-        private Boolean FillParametrs()
+        private void SetInitAndInput(out string name, ref Bitmap sourceImage1, ref Bitmap sourceImage2, out int widht, out int height, out double[,] Input, out double[,] Init)
         {
-            String gene = GeneText.Text;
-            String[] G = gene.Split(';');
+            if (!arbIn1.Checked)
+            {
+                sourceImage1 = ((PicForm)OpenList.SelectedItem).sourceImage;
+                widht = sourceImage1.Width;
+                height = sourceImage1.Height;
 
-            if (G.Length % 2 == 0) {
+                Input = BitmapToArray(sourceImage1);
+                name = ((PicForm)OpenList.SelectedItem).Text;
+
+                if (!arbIn2.Checked)
+                {
+                    sourceImage2 = ((PicForm)OpenList2.SelectedItem).sourceImage;
+                    Init = BitmapToArray(sourceImage2);
+                }
+                else
+                {
+                    Init = AllZeores(widht, height);
+                }
+            }
+            else
+            {
+                sourceImage2 = ((PicForm)OpenList2.SelectedItem).sourceImage;
+                widht = sourceImage2.Width;
+                height = sourceImage2.Height;
+
+                Init = BitmapToArray(sourceImage2);
+                Input = AllZeores(widht, height);
+                name = ((PicForm)OpenList2.SelectedItem).Text;
+            }
+        }
+
+        private double[,] AllZeores(int widht, int height)
+        {
+            double[,] ret = new double[height, widht];
+
+            return ret;
+        }
+
+        private bool GetGene()
+        {
+            string gene = GeneText.Text;
+            string[] G = gene.Split(';');
+
+            if (G.Length % 2 == 0)
+            {
+                recomendLabel.ForeColor = Color.Red;
                 recomendLabel.Text = "Gene is wrong.";
                 return false;
             }
 
-            Z = Double.Parse(G[0]);
-            int m = Convert.ToInt32(Math.Sqrt((G.Length - 1)/2));
+            Z = double.Parse(G[0]);
+            int m = Convert.ToInt32(Math.Sqrt((G.Length - 1) / 2));
             A = new double[m, m];
             B = new double[m, m];
 
@@ -127,37 +155,38 @@ namespace DiplV1
             {
                 for (int j = 0; j < m; j++)
                 {
-                    int x =  j+(i * m) + 1;
-                    A[i, j] = Double.Parse(G[x]);
-                    B[i, j] = Double.Parse(G[x+(m*m)]);
+                    int x = j + (i * m) + 1;
+                    try
+                    {
+                        A[i, j] = double.Parse(G[x]);
+                        B[i, j] = double.Parse(G[x + (m * m)]);
+                    }
+                    catch (Exception)
+                    {
+                        recomendLabel.ForeColor = Color.Red;
+                        recomendLabel.Text = "Gene is wrong.";
+                        return false;
+                    }
                 }
             }
 
             return true;
         }
 
-      /*  private void rBInput_CheckedChanged(object sender, EventArgs e)
-        {
-            arbState.Enabled = false;
-        }
-
-        private void rBArb_CheckedChanged(object sender, EventArgs e)
-        {
-            arbState.Enabled = true;
-        }
-
-        private void rBFlux_CheckedChanged(object sender, EventArgs e)
+        private void RBFlux_CheckedChanged(object sender, EventArgs e)
         {
             arbBound.Enabled = false;
         }
 
-        private void rBArbBound_CheckedChanged(object sender, EventArgs e)
+        private void RBArbBound_CheckedChanged(object sender, EventArgs e)
         {
             arbBound.Enabled = true;
-        }*/
+        }
 
-        private void DrawIO(int widht, int height)
+        private void DrawIO(double[,] Output, String name)
         {
+            int widht = Output.GetLength(1);
+            int height = Output.GetLength(0);
             Bitmap BitO = new Bitmap(widht, height);
 
             int OC = 0;
@@ -165,21 +194,22 @@ namespace DiplV1
             {
                 for (int y = 0; y < height; y++)
                 {
-                    OC = getOutput(Output[y, x]);
+                    OC = GetOutput(Output[y, x]);
                     BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
 
                 }
             }
 
 
-            CreateNewPicForm(BitO,"Result for: " + ((PicForm)OpenList.SelectedItem).Text);
+            CreateNewPicForm(BitO, "Result for: " + name);
 
         }
 
         public void Imageclosed(PicForm closed)
         {
-           OpenList.Items.Remove(closed);
-           OpenList2.Items.Remove(closed);
+            OpenList.Items.Remove(closed);
+            OpenList2.Items.Remove(closed);
+            if (OpenList.Items.Count == 0) Start.Enabled = false;
         }
 
         private void CreateNewPicForm(Bitmap image, String name)
@@ -193,35 +223,79 @@ namespace DiplV1
             OpenList.Items.Add(picForm);
             OpenList2.Items.Add(picForm);
         }
-         
+
+        private void ArbIn2_CheckedChanged(object sender, EventArgs e)
+        {
+            OpenList2.Enabled = !arbIn2.Checked;
+            OpenList2.ClearSelected();
+            if (!arbIn1.Checked && !arbIn2.Checked && (OpenList.SelectedIndex != -1 || OpenList2.SelectedIndex != -1)) Start.Enabled = false;
+        }
+
+        private void ArbIn1_CheckedChanged(object sender, EventArgs e)
+        {
+            OpenList.Enabled = !arbIn1.Checked;
+            OpenList.ClearSelected();
+            if (!arbIn1.Checked && !arbIn2.Checked && (OpenList.SelectedIndex != -1 || OpenList2.SelectedIndex != -1)) Start.Enabled = false;
+        }
+
         private void OpenList_SelectedValueChanged(object sender, EventArgs e)
         {
-            Start.Enabled = true;
+            if (!arbIn1.Checked && !arbIn2.Checked)
+            {
+                Start.Enabled = OpenList.SelectedIndex != -1 && OpenList2.SelectedIndex != -1;
+            }
+            else
+            {
+                Start.Enabled = OpenList.SelectedIndex != -1 || OpenList2.SelectedIndex != -1;
+            }
+
         }
-     
+
         private void EdgeDetectionForGeyscaleImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
+        {
             GeneText.Text = "-0.5;0;0;0;0;2;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1";
 
-            rBBinOut.Checked = true;
-            rBArb.Checked = true;
-            arbState.Text = "0";
-            rBFlux.Checked = true;
-
+            recomendLabel.ForeColor = Color.Blue;
             recomendLabel.Text = "Recomended image for example is \n \"avergra2.bmp\" from PicLib";
+        }
+
+        private void BlackPropagationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneText.Text = "3.75;0.25;0.25;0.25;0.25;3;0.25;0.25;0.25;0.25;0;0;0;0;0;0;0;0;0";
+
+            recomendLabel.ForeColor = Color.Blue;
+            recomendLabel.Text = "Recomended image for example is \n \"dots.bmp\" from PicLib";
+        }
+
+        private void PatternMatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneText.Text = "-6.5;0;0;0;0;1;0;0;0;0;1;-1;1;0;1;0;1;-1;1";
+
+            recomendLabel.ForeColor = Color.Blue;
+            recomendLabel.Text = "Recomended image for example is \n \"match.bmp\" from PicLib";
+        }
+
+        private void AverageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneText.Text = "0;0;1;0;1;2;1;0;1;0;0;0;0;0;0;0;0;0;0";
+
+            recomendLabel.ForeColor = Color.Blue;
+            recomendLabel.Text = "Recomended image for example is \n \"madonna.bmp\" from PicLib";
+        }
+
+        private void logicalNotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneText.Text = "0;0;0;0;0;1;0;0;0;0;0;0;0;0;-2;0;0;0;0";
+
+            recomendLabel.ForeColor = Color.Blue;
+            recomendLabel.Text = "Recomended image for example is \n \"A_LETTER.bmp\" from PicLib";
         }
 
         private void VerticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneText.Text = "-2;0;0;0;0;1;0;0;0;0;0;-1;0;0;1;0;0;-1;0";
 
-            rBGreyScale.Checked = true;
-            rBArb.Checked = true;
-            arbState.Text = "0";
-            rBArbBound.Checked = true;
-            arbBound.Text = "-1";
-
-
+            recomendLabel.ForeColor = Color.Blue;
             recomendLabel.Text = "Recomended image for example is \n \"Deldiag1.bmp\" from PicLib";
         }
     }

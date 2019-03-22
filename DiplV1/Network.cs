@@ -5,14 +5,15 @@ namespace DiplV1
 {
     class Network
     {
-        int m,negm;
+
         double z;
-        double[,] netStatus;
+        double[,] init;
         double[,] b, a, output;
         double[,] input;
-        int widht, height;
-        double bounVaule;
-        Boolean fluxBoundry;
+
+        int m, negm;
+        private readonly int widht;
+        private readonly int height;
 
         public double Z
         {
@@ -62,7 +63,7 @@ namespace DiplV1
                 output = value;
             }
         }
-        public double[,] I
+        public double[,] Input
         {
             get
             {
@@ -74,147 +75,113 @@ namespace DiplV1
                 input = value;
             }
         }
-
-        public double[,] NetStatus
+        public double[,] Init
         {
             get
             {
-                return netStatus;
+                return init;
             }
 
             set
             {
-                netStatus = value;
+                init = value;
             }
         }
-
-        public double BounVaule { get => bounVaule; set => bounVaule = value; }
-        public bool FluxBoundry { get => fluxBoundry; set => fluxBoundry = value; }
 
         public Network(int widht, int height)
         {
             this.widht = widht;
             this.height = height;
-            netStatus = new double[height, widht];
+            output = new double[height, widht];
+
         }
 
-        public void inicializeNetwork(Boolean inputAsOutput, string stateDef)
-        {
-            if (inputAsOutput)
-            {
-                for (int x = 0; x < widht; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        netStatus[y, x] = I[y, x];
-                    }
-                }
-            }
-            else
-            {
-                for (int x = 0; x < widht; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        netStatus[y, x] = Double.Parse(stateDef); ;
-                    }
-                }
-            }
-        }
-
-        public double[,] ProcessNetwork()
-        {
-            m = ((A.Length/3)-1)/ 2;
-            negm = 0 - m;
-            for (int x = 0; x <= widht - 1; x++)
-            {
-                for (int y = 0; y <= height - 1; y++)
-                {
-                    Output[y, x] = coutOutput(newState(x, y));
-                 //  Debug.Write(Output[y, x] + "|");
-                }
-              //  Debug.WriteLine(" ");
-            }
-            return Output;
-        }
-
-        private double newState(int x, int y)
-        {
-            double ret = 0;
-            double feedback = 0, feedforward = 0;
-            int xx, yy;
-            for (int i = negm; i <= m; i++)
-            {
-                for (int e = negm; e <= m; e++)
-                {
-                    xx = x + e;
-                    yy = y + i;
-                    if (fluxBoundry)
-                    {
-                        if (xx < 0) xx = 0;
-                        if (yy < 0) yy = 0;
-                        if (xx > widht - 1) xx = widht - 1;
-                        if (yy > height - 1) yy = height - 1;
-                        feedforward += B[i + 1, e + 1] * I[yy, xx];
-                    }
-                    else
-                    {
-                        if (xx < 0 || yy < 0 || xx > widht - 1 || yy > height - 1)
-                        {
-                            feedback += B[i + 1, e + 1] * bounVaule;
-                        }
-                        else
-                        {
-                            feedforward += B[i + 1, e + 1] * I[yy, xx];
-                        }
-                    }
-
-
-
-                }
-
-            }
-            for (int i = negm; i <= m; i++)
-            {
-                for (int e = negm; e <= m; e++)
-                {
-                    xx = x + e;
-                    yy = y + i;
-                    if (fluxBoundry)
-                    {
-                        if (xx < 0) xx = 0;
-                        if (yy < 0) yy = 0;
-                        if (xx > widht - 1) xx = widht - 1;
-                        if (yy > height - 1) yy = height - 1;
-                        feedback += A[i + 1, e + 1] * netStatus[yy, xx];
-                    }
-                    else
-                    {
-                        if (xx < 0 || yy < 0 || xx > widht - 1 || yy > height - 1)
-                        {
-                            feedback += A[i + 1, e + 1] * bounVaule;
-                        }
-                        else
-                        {
-                            feedback += A[i + 1, e + 1] * netStatus[yy, xx];
-                        }
-                    }
-                }
-            }
-
-            //ret = 0 + z + 0 + feedforward;
-            ret = -netStatus[y, x] + z + feedback + feedforward;
-
-            return ret;
-        }
-
-        public double coutOutput(double state)
+        public double CoutOutput(double state)
         {
             double ret = 0;
 
             ret = (Math.Abs(state + 1.0) - Math.Abs(state - 1.0)) / 2.0;
 
             return ret;
+        }
+
+        public double[,] Start(double t, double dt)
+        {
+            m = ((A.Length / 3) - 1) / 2;
+            negm = 0 - m;
+
+            double[,] ffi = CalculateFFI();
+            double[,] cellOutputs;
+            double[,] cellDeltas;
+            for (double i = 0; i < t; i += dt)
+            {
+                cellOutputs = CalculateCellOutputs();
+                cellDeltas = CalculateCellDeltas(ffi, cellOutputs);
+                for (int x = 1; x <= widht - 2; x++)
+                {
+                    for (int y = 1; y <= height - 2; y++)
+                    {
+                        init[y, x] += dt * cellDeltas[y, x];
+                    }
+                }
+
+            }
+            return init;
+        }
+
+        private double[,] CalculateCellDeltas(double[,] ffi, double[,] cellOutputs)
+        {
+            double[,] cellDeltas = new double[height, widht];
+            for (int x = 1; x <= widht - 2; x++)
+            {
+                for (int y = 1; y <= height - 2; y++)
+                {
+                    cellDeltas[y, x] = -init[y, x] + ffi[y, x];
+                    for (int i = negm; i <= m; i++)
+                    {
+                        for (int e = negm; e <= m; e++)
+                        {
+                            cellDeltas[y, x] += A[e + 1, i + 1] * cellOutputs[y + e, x + i];
+
+                        }
+                    }
+                }
+            }
+            return cellDeltas;
+        }
+
+        private double[,] CalculateCellOutputs()
+        {
+            double[,] cellOutputs = new double[height, widht];
+            for (int x = 1; x <= widht - 2; x++)
+            {
+                for (int y = 1; y <= height - 2; y++)
+                {
+                    cellOutputs[y, x] = CoutOutput(init[y, x]);
+                }
+            }
+            return cellOutputs;
+        }
+
+        private double[,] CalculateFFI()
+        {
+            double[,] ffi = new double[height, widht];
+            for (int x = 1; x <= widht - 2; x++)
+            {
+                for (int y = 1; y <= height - 2; y++)
+                {
+                    ffi[y, x] = z;
+                    for (int i = negm; i <= m; i++)
+                    {
+                        for (int e = negm; e <= m; e++)
+                        {
+                            ffi[y, x] += B[e + 1, i + 1] * Input[y + e, x + i];
+
+                        }
+                    }
+                }
+            }
+            return ffi;
         }
     }
 }
