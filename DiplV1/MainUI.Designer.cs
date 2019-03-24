@@ -37,6 +37,7 @@
             this.blackPropagationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patternMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.averageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicalNotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Start = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.recomendLabel = new System.Windows.Forms.Label();
@@ -55,7 +56,8 @@
             this.rBFlux = new System.Windows.Forms.RadioButton();
             this.arbBound = new System.Windows.Forms.TextBox();
             this.Boundary = new System.Windows.Forms.GroupBox();
-            this.logicalNotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rBFixed = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Boundary.SuspendLayout();
@@ -68,7 +70,7 @@
             this.examplesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(340, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(337, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,10 +137,17 @@
             this.averageToolStripMenuItem.Text = "Average";
             this.averageToolStripMenuItem.Click += new System.EventHandler(this.AverageToolStripMenuItem_Click);
             // 
+            // logicalNotToolStripMenuItem
+            // 
+            this.logicalNotToolStripMenuItem.Name = "logicalNotToolStripMenuItem";
+            this.logicalNotToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.logicalNotToolStripMenuItem.Text = "Logical not";
+            this.logicalNotToolStripMenuItem.Click += new System.EventHandler(this.logicalNotToolStripMenuItem_Click);
+            // 
             // Start
             // 
             this.Start.Enabled = false;
-            this.Start.Location = new System.Drawing.Point(279, 291);
+            this.Start.Location = new System.Drawing.Point(279, 289);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(50, 23);
             this.Start.TabIndex = 25;
@@ -237,7 +246,7 @@
             // 
             // nOfIteration
             // 
-            this.nOfIteration.Location = new System.Drawing.Point(223, 291);
+            this.nOfIteration.Location = new System.Drawing.Point(223, 292);
             this.nOfIteration.Name = "nOfIteration";
             this.nOfIteration.Size = new System.Drawing.Size(50, 20);
             this.nOfIteration.TabIndex = 26;
@@ -246,7 +255,7 @@
             // rBGreyScale
             // 
             this.rBGreyScale.AutoSize = true;
-            this.rBGreyScale.Location = new System.Drawing.Point(6, 42);
+            this.rBGreyScale.Location = new System.Drawing.Point(6, 41);
             this.rBGreyScale.Name = "rBGreyScale";
             this.rBGreyScale.Size = new System.Drawing.Size(75, 17);
             this.rBGreyScale.TabIndex = 7;
@@ -279,7 +288,7 @@
             // rBArbBound
             // 
             this.rBArbBound.AutoSize = true;
-            this.rBArbBound.Location = new System.Drawing.Point(6, 18);
+            this.rBArbBound.Location = new System.Drawing.Point(6, 65);
             this.rBArbBound.Name = "rBArbBound";
             this.rBArbBound.Size = new System.Drawing.Size(63, 17);
             this.rBArbBound.TabIndex = 1;
@@ -290,12 +299,10 @@
             // rBFlux
             // 
             this.rBFlux.AutoSize = true;
-            this.rBFlux.Checked = true;
-            this.rBFlux.Location = new System.Drawing.Point(6, 41);
+            this.rBFlux.Location = new System.Drawing.Point(6, 42);
             this.rBFlux.Name = "rBFlux";
             this.rBFlux.Size = new System.Drawing.Size(44, 17);
             this.rBFlux.TabIndex = 0;
-            this.rBFlux.TabStop = true;
             this.rBFlux.Text = "Flux";
             this.rBFlux.UseVisualStyleBackColor = true;
             this.rBFlux.CheckedChanged += new System.EventHandler(this.RBFlux_CheckedChanged);
@@ -303,7 +310,7 @@
             // arbBound
             // 
             this.arbBound.Enabled = false;
-            this.arbBound.Location = new System.Drawing.Point(75, 18);
+            this.arbBound.Location = new System.Drawing.Point(75, 64);
             this.arbBound.Name = "arbBound";
             this.arbBound.Size = new System.Drawing.Size(50, 20);
             this.arbBound.TabIndex = 25;
@@ -311,6 +318,7 @@
             // 
             // Boundary
             // 
+            this.Boundary.Controls.Add(this.rBFixed);
             this.Boundary.Controls.Add(this.arbBound);
             this.Boundary.Controls.Add(this.rBFlux);
             this.Boundary.Controls.Add(this.rBArbBound);
@@ -321,18 +329,33 @@
             this.Boundary.TabStop = false;
             this.Boundary.Text = "Boundary";
             // 
-            // logicalNotToolStripMenuItem
+            // rBFixed
             // 
-            this.logicalNotToolStripMenuItem.Name = "logicalNotToolStripMenuItem";
-            this.logicalNotToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.logicalNotToolStripMenuItem.Text = "Logical not";
-            this.logicalNotToolStripMenuItem.Click += new System.EventHandler(this.logicalNotToolStripMenuItem_Click);
+            this.rBFixed.AutoSize = true;
+            this.rBFixed.Checked = true;
+            this.rBFixed.Location = new System.Drawing.Point(6, 19);
+            this.rBFixed.Name = "rBFixed";
+            this.rBFixed.Size = new System.Drawing.Size(50, 17);
+            this.rBFixed.TabIndex = 43;
+            this.rBFixed.TabStop = true;
+            this.rBFixed.Text = "Fixed";
+            this.rBFixed.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(158, 295);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "# of cycles";
             // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 327);
+            this.ClientSize = new System.Drawing.Size(337, 321);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.nOfIteration);
             this.Controls.Add(this.arbIn1);
             this.Controls.Add(this.arbIn2);
@@ -393,6 +416,8 @@
         private System.Windows.Forms.ToolStripMenuItem patternMatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem averageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicalNotToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rBFixed;
+        private System.Windows.Forms.Label label1;
     }
 }
 

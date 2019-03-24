@@ -48,22 +48,38 @@ namespace DiplV1
                     Input[y, x] = GetInput(sourceImage.GetPixel(x, y).B);
                 }
             }
-            Start.Enabled = true;
+            // Start.Enabled = true;
             return Input;
         }
 
         private double GetInput(int color)
         {
-            double ret = (double)color / 128;
-            return (ret - 1) * (-1);
+            double ret;
+            if (rBBinOut.Checked)
+            {
+                ret = (double)color / 128;
+                ret = (ret - 1) * (-1);
+            }
+            else
+            {
+                ret = color;
+            }
+            return ret;
+
         }
 
         private int GetOutput(double ret)
         {
             int color = 0;
 
-            if (ret <= 0) color = 255;
-
+            if (rBBinOut.Checked)
+            {
+                if (ret <= 0) color = 255;
+            }
+            else
+            {
+                color = (int)ret;
+            }
             return color;
         }
 
@@ -76,14 +92,20 @@ namespace DiplV1
 
                 SetInitAndInput(out string name, ref sourceImage1, ref sourceImage2, out int widht, out int height, out double[,] Input, out double[,] Init);
 
-                Network Net = new Network(widht, height);
+                string boundary = "";
+                if (rBFixed.Checked) boundary = "Fixed";
+                if (rBFlux.Checked) boundary = "Flux";
+                if (rBArbBound.Checked) boundary = "Arbitrary";
 
-                Net.Z = Z;
-                Net.B = B;
-                Net.A = A;
+                Network Net = new Network(widht, height, boundary, int.Parse(arbBound.Text))
+                {
+                    Z = Z,
+                    B = B,
+                    A = A,
 
-                Net.Input = Input;
-                Net.Init = Init;
+                    Input = Input,
+                    Init = Init
+                };
 
 
 
@@ -195,8 +217,16 @@ namespace DiplV1
                 for (int y = 0; y < height; y++)
                 {
                     OC = GetOutput(Output[y, x]);
-                    BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
+                    try
+                    {
+                        BitO.SetPixel(x, y, Color.FromArgb(OC, OC, OC));
 
+                    }
+                    catch (Exception)
+                    {
+                        recomendLabel.ForeColor = Color.Red;
+                        recomendLabel.Text = "Wrong output settings";
+                    }
                 }
             }
 
