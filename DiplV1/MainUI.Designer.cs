@@ -58,9 +58,13 @@
             this.Boundary = new System.Windows.Forms.GroupBox();
             this.rBFixed = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rBBinIn = new System.Windows.Forms.RadioButton();
+            this.rBGreyScaleIn = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Boundary.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -278,12 +282,13 @@
             // 
             this.groupBox1.Controls.Add(this.rBBinOut);
             this.groupBox1.Controls.Add(this.rBGreyScale);
-            this.groupBox1.Location = new System.Drawing.Point(193, 221);
+            this.groupBox1.Location = new System.Drawing.Point(247, 219);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 64);
+            this.groupBox1.Size = new System.Drawing.Size(82, 64);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // rBArbBound
             // 
@@ -350,11 +355,45 @@
             this.label1.TabIndex = 43;
             this.label1.Text = "# of cycles";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rBBinIn);
+            this.groupBox2.Controls.Add(this.rBGreyScaleIn);
+            this.groupBox2.Location = new System.Drawing.Point(161, 219);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(82, 64);
+            this.groupBox2.TabIndex = 33;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Input";
+            // 
+            // rBBinIn
+            // 
+            this.rBBinIn.AutoSize = true;
+            this.rBBinIn.Checked = true;
+            this.rBBinIn.Location = new System.Drawing.Point(6, 19);
+            this.rBBinIn.Name = "rBBinIn";
+            this.rBBinIn.Size = new System.Drawing.Size(54, 17);
+            this.rBBinIn.TabIndex = 6;
+            this.rBBinIn.TabStop = true;
+            this.rBBinIn.Text = "Binary";
+            this.rBBinIn.UseVisualStyleBackColor = true;
+            // 
+            // rBGreyScaleIn
+            // 
+            this.rBGreyScaleIn.AutoSize = true;
+            this.rBGreyScaleIn.Location = new System.Drawing.Point(6, 41);
+            this.rBGreyScaleIn.Name = "rBGreyScaleIn";
+            this.rBGreyScaleIn.Size = new System.Drawing.Size(75, 17);
+            this.rBGreyScaleIn.TabIndex = 7;
+            this.rBGreyScaleIn.Text = "Grey scale";
+            this.rBGreyScaleIn.UseVisualStyleBackColor = true;
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(337, 321);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nOfIteration);
             this.Controls.Add(this.arbIn1);
@@ -382,6 +421,8 @@
             this.groupBox1.PerformLayout();
             this.Boundary.ResumeLayout(false);
             this.Boundary.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,6 +459,9 @@
         private System.Windows.Forms.ToolStripMenuItem logicalNotToolStripMenuItem;
         private System.Windows.Forms.RadioButton rBFixed;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rBBinIn;
+        private System.Windows.Forms.RadioButton rBGreyScaleIn;
     }
 }
 

@@ -9,8 +9,11 @@
 \select@language {english}
 \contentsline {section}{\numberline {1}Introduction}{9}{section.1}
 \contentsline {subsection}{\numberline {1.1}Cellular neural networks}{9}{subsection.1.1}
-\contentsline {section}{\numberline {2}Experiments}{10}{section.2}
+\contentsline {section}{\numberline {2}Examples of Image processing}{10}{section.2}
 \contentsline {subsection}{\numberline {2.1}Common properties.}{10}{subsection.2.1}
+\contentsline {subparagraph}{Fixed:}{10}{section*.4}
+\contentsline {subparagraph}{Flex:}{10}{section*.5}
+\contentsline {subparagraph}{Arbitrary:}{10}{section*.6}
 \contentsline {subsection}{\numberline {2.2}Edge detection in gray-scale picture.}{11}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Description}{11}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Setup}{11}{subsubsection.2.2.2}
@@ -27,21 +30,24 @@
 \contentsline {subsubsection}{\numberline {2.5.1}Description}{15}{subsubsection.2.5.1}
 \contentsline {subsubsection}{\numberline {2.5.2}Setup}{15}{subsubsection.2.5.2}
 \contentsline {subsubsection}{\numberline {2.5.3}Results}{15}{subsubsection.2.5.3}
-\contentsline {subsection}{\numberline {2.6}Logical Not.}{16}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.6}Pattern match.}{16}{subsection.2.6}
 \contentsline {subsubsection}{\numberline {2.6.1}Description}{16}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Setup}{16}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Results}{16}{subsubsection.2.6.3}
-\contentsline {subsubsection}{\numberline {2.6.4}Other logical functions}{16}{subsubsection.2.6.4}
-\contentsline {subsection}{\numberline {2.7}Pattern match.}{17}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.7}Logical Not.}{17}{subsection.2.7}
 \contentsline {subsubsection}{\numberline {2.7.1}Description}{17}{subsubsection.2.7.1}
 \contentsline {subsubsection}{\numberline {2.7.2}Setup}{17}{subsubsection.2.7.2}
 \contentsline {subsubsection}{\numberline {2.7.3}Results}{17}{subsubsection.2.7.3}
-\contentsline {section}{\numberline {3}Implementations}{18}{section.3}
-\contentsline {subsection}{\numberline {3.1}Code}{18}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}UI elements}{18}{subsection.3.2}
+\contentsline {subsection}{\numberline {2.8}Logical And/Or.}{18}{subsection.2.8}
+\contentsline {subsubsection}{\numberline {2.8.1}Description}{18}{subsubsection.2.8.1}
+\contentsline {subsubsection}{\numberline {2.8.2}Setup}{18}{subsubsection.2.8.2}
+\contentsline {subsubsection}{\numberline {2.8.3}Results}{18}{subsubsection.2.8.3}
+\contentsline {section}{\numberline {3}Implementations}{20}{section.3}
+\contentsline {subsection}{\numberline {3.1}Code}{20}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}UI elements}{20}{subsection.3.2}
 \select@language {english}
-\contentsline {section}{Resum\'e}{19}{section*.4}
+\contentsline {section}{Resum\'e}{21}{section*.7}
 \select@language {english}
 \select@language {czech}
-\contentsline {section}{Summary}{20}{section*.5}
+\contentsline {section}{Summary}{22}{section*.8}
 \select@language {english}

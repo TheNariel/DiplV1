@@ -1,10 +1,13 @@
 \subsubsection{Description}
-Cellular neural networks are able to make logical operations on binary pictures, this example shows logical negation. Black pixels to white and white to black. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+Cellular neural networks are able to make logical operations on binary pictures, this example shows logical negation. Black pixels to white and white to black. 
 \subsubsection{Setup}
 
-\textbf{Input:} Unimportant (all zeros)\\
-\textbf{Boundary conditions:} Fixed.\\
-\textbf{Initial output:} Grey-scale picture
+\textbf{Input 1:} Binary picture\\
+\textbf{Initial state/Input 2:} Arbitrary.\\
+\textbf{Boundary conditions:} Flex\\
+\textbf{Output:} Binary.\\
+\textbf{Gene:} 0;0;0;0;0;1;0;0;0;0;0;0;0;0;-2;0;0;0;0\\
+
 
 \begin{minipage}{0.9\linewidth}
 \begin{equation}
@@ -26,17 +29,17 @@ Z = 0
 \end{minipage}
 
 \subsubsection{Results}
-
+Figure \ref{fig:input-LN} show input used in this example. The Figure \ref{fig:output-LN} shows typical result of this example, image with negated colors. \\
 
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/LOGNOT/fig/Input.png} 
 	\captionof{figure}{Input}
+	\label{fig:input-LN}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/LOGNOT/fig/Output.png}
 	\captionof{figure}{Output}
+	\label{fig:output-LN}
 \end{minipage}
-
-\subsubsection{Other logical functions}

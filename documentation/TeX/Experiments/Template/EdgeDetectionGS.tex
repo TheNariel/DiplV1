@@ -1,12 +1,11 @@
 \subsubsection{Description}
-This example shows the ability to use Cellular neural networks to find edges of different objects in grey-scale picture. 
+This example shows the ability to use Cellular neural networks to find edges of different objects in grey-scale picture. It uses a grey-scale picture as an input, matrix setting shown bellow(\ref{fig:EDSC}) and flux boundary condition to produce a binary picture with the edges.
 \subsubsection{Setup}
 
-\textbf{Input 1:} Grayscale picture.\\
-\textbf{Initial state/Input 2:} Arbitrary\\
+\textbf{Input 1 :} Grayscale picture.\\
+\textbf{Initial state/Input 2} Arbitrary\\
 \textbf{Boundary conditions:} Flux.\\
 \textbf{Output:} Binary.\\
-\textbf{Gene:} -0.5;0;0;0;0;5;0;0;0;0;-1;-1;-1;-1;8;-1;-1;-1;-1\\
 
 \begin{minipage}{0.9\linewidth}
 \begin{equation}
@@ -27,20 +26,20 @@ Z = -0.5
 \captionof{figure}{Chosen values of A,B and Z for this example}
 \label{fig:EDSC}
 \end{minipage}
-\\
+
 
 \subsubsection{Results}
-Figure \ref{fig:input-ED} show input used in this example, it is a picture with several objects of different shade of grey. The Figure \ref{fig:output-ED} shows typical result of this experiment. This functionality is based on removing all pixels that have only pixels with the same color around them. \\
+Figure \ref{fig:input} show input used in this example, it is a picture with several objects of different shade of grey. The Figure \ref{fig:output} shows typical result of this experiment. This functionality is based on removing all pixels that have only pixels with the same color around them. \\
 
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/EdgeDetectionGS/fig/Input.png}
 	\captionof{figure}{Input}
-	\label{fig:input-ED}
+	\label{fig:input}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/EdgeDetectionGS/fig/Output.png}
 	\captionof{figure}{Output}
-	\label{fig:output-ED}
+	\label{fig:output}
 \end{minipage}

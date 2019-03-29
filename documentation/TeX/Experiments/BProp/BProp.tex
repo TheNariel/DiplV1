@@ -1,10 +1,12 @@
 \subsubsection{Description}
-This example shows the ability to use Cellular neural networks to make black objects bigger (white smaller) on a binary picture. It uses a binary picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+This example shows the ability to use Cellular neural networks to make black objects bigger (white smaller) on a binary picture. 
 \subsubsection{Setup}
 
-\textbf{Input:} Unimportant (all zeros)\\
-\textbf{Boundary conditions:} Fixed.\\
-\textbf{Initial output:} Grey-scale picture
+\textbf{Input 1:} Arbitrary.\\
+\textbf{Initial state/Input 2:} Grayscale picture\\
+\textbf{Boundary conditions:} Flux.\\
+\textbf{Output:} Binary.\\
+\textbf{Gene:} 3.75;0.25;0.25;0.25;0.25;3;0.25;0.25;0.25;0.25;0;0;0;0;0;0;0;0;0\\
 
 \begin{minipage}{0.9\linewidth}
 \begin{equation}
@@ -26,15 +28,17 @@ Z = 3.75
 \end{minipage}
 
 \subsubsection{Results}
-
+Figure \ref{fig:input-BP} show input used in this example, it is a picture with several black objects. The Figure \ref{fig:output-BP} shows typical result of this example after running 5 cycles, each cycle makes the black object grow a new layer of black pixels around them. \\
 
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/BProp/fig/Input.png} 
-	\captionof{figure}{Input}
+	\captionof{figure}{Input}	
+	\label{fig:input-BP}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/BProp/fig/Output.png}
-	\captionof{figure}{Output}
+	\captionof{figure}{Output}	
+	\label{fig:output-BP}
 \end{minipage}

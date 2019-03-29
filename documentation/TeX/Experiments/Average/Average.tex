@@ -1,10 +1,11 @@
 \subsubsection{Description}
-This example shows the ability to use Cellular neural networks to produce a binary representation of grey-scale picture base on the average of the pixels. It uses a grey-scale picture as an input, matrix setting shown bellow and fixed value boundary condition to produce a binary picture with the edges.
+This example shows the ability to use Cellular neural networks to produce a binary representation of grey-scale picture base on the average of the pixels. 
 \subsubsection{Setup}
-
-\textbf{Input:} Unimportant (all zeros)\\
-\textbf{Boundary conditions:} Fixed.\\
-\textbf{Initial output:} Grey-scale picture
+\textbf{Input 1:} Arbitrary\\
+\textbf{Initial state/Input 2:} Grayscale picture.\\
+\textbf{Boundary conditions:} Arbitrary (0).\\
+\textbf{Output:} Binary.\\
+\textbf{Gene:} 0;0;1;0;1;2;1;0;1;0;0;0;0;0;0;0;0;0;0\\
 
 \begin{minipage}{0.9\linewidth}
 \begin{equation}
@@ -26,15 +27,17 @@ Z = 0
 \end{minipage}
 
 \subsubsection{Results}
-
+Figure \ref{fig:input-AV} show input used in this example, it is grayscale picture. The Figure \ref{fig:output-AV} shows typical result of this example after running 5 cycles when this example became stable. \\
 
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Input.png} 
 	\captionof{figure}{Input}
+	\label{fig:input-AV}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 	\centering
 	\includegraphics[width=0.9\linewidth]{./Experiments/Average/fig/Output.png}
 	\captionof{figure}{Output}
+	\label{fig:output-AV}
 \end{minipage}

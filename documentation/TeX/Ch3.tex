@@ -1,10 +1,17 @@
-This chapter will deal with the examples of experiments plausible with this work. 
-Each of the following reports contains description, parameters and results of a given experiment.
+This chapter will deal with the examples of image processing plausible with CNNs. 
+Each of the following reports contains description, parameters and results of a given examples.
+
 \subsection{Common properties.}
-Following experiments are using several common properties in setup, in order to keep the reports clear all go over them here.\\
-\textbf{Input:} inputs are general gonna be ether gray-scale pictures or binary ones with the values -1/1.\\
-\textbf{Boundary conditions:} Boundary conditions defines the networks behavior on the edges of the picture. Two of them are used, Fixed where the outline of the picture is "surrounded" by fixed value, or Flux where the edge pixels are copied outwards. \\
-\textbf{Initial output:} this setting states the initial values of output matrix, commonly its not an important since the calculations are not working with it. but i some experiments its set to some picture or other specific value.  \\
+Due to the nature of CNNs all following examples shares the same parameters that need to set. In order to keep the individual reports clear here are explanations of those parameters.\\\\
+\textbf{Input 1:} Inputs in these examples are ether gray-scale pictures or binary ones with the values -1/1.In some cases can be also Arbitrary (all 0) in these the input picture is used as an initial value state for the network. \\\\
+\textbf{Initial state/Input 2:} This set the initial values of the network, can be Arbitrary (all 0) or can be set to be some picture.   \\\\
+\textbf{Gene:} A gene is a one string representation of Z, A and B (in this order) separated by ";". Separator can by any symbol, ";" is used here as its used in the supporting program. \\\\
+\textbf{Boundary conditions:} Boundary conditions defines the networks behaviour on the edges of the picture ("boundary layer"). Three of them are used in the examples bellow.
+\subparagraph{Fixed:} The "boundary layer" of cells doesn't not make any computation and doesn't change it's value.
+\subparagraph{Flex:} During the computations on "boundary layer" values from outside of picture are substituted by taking value of nearest pixel of the picture.
+\subparagraph{Arbitrary:}During the computations on "boundary layer" values from outside of picture are substituted by a defined user given value. \\
+
+
 
 \newpage
 \subsection{Edge detection in gray-scale picture.}
@@ -23,12 +30,17 @@ Following experiments are using several common properties in setup, in order to 
 \input Experiments/BProp/BProp.tex
 
 \newpage
-\subsection{Logical Not.}
-\input Experiments/LOGNOT/LOGNOT.tex
+\subsection{Pattern match.}
+\input Experiments/Match/Match.tex
 
 \newpage
-\subsection{Pattern match.}
-\input Experiments/MATCH/MATCH.tex
+\subsection{Logical Not.}
+\input Experiments/LogNot/LogNot.tex
+
+\newpage
+\subsection{Logical And/Or.}
+\input Experiments/LogOrAnd/LogOrAnd.tex
+
 
 %%\newpage
 %%\subsection{Template}

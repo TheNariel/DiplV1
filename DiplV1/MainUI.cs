@@ -55,7 +55,7 @@ namespace DiplV1
         private double GetInput(int color)
         {
             double ret;
-            if (rBBinOut.Checked)
+            if (rBBinIn.Checked)
             {
                 ret = (double)color / 128;
                 ret = (ret - 1) * (-1);
@@ -319,6 +319,11 @@ namespace DiplV1
 
             recomendLabel.ForeColor = Color.Blue;
             recomendLabel.Text = "Recomended image for example is \n \"A_LETTER.bmp\" from PicLib";
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void VerticalDeletebineryToolStripMenuItem_Click(object sender, EventArgs e)
